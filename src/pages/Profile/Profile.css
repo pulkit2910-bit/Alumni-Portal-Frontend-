@@ -1,0 +1,12 @@
+.Profile  {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.profile-middle {
+    padding : 0.25rem 0.75rem;
+    display: grid;
+    grid-template-columns: 75% auto;
+    gap: 1rem;
+}
