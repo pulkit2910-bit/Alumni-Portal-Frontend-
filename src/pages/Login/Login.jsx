@@ -1,6 +1,7 @@
 import React from "react";
 import "./Login.css";
 import logo from "../../img/logo.png";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
@@ -15,9 +16,9 @@ const Login = () => {
           <input type="password" placeholder="Password" />
           <button onClick="login()">Login</button>
           <div className="extra">
-            <a id="reg" href="./register.html">
-              Don't have an account?
-            </a>
+            <Link to="/register" id="reg">
+              Don't have an account? 
+            </Link>
 
             <a id="fp" href="./forgotpwd.html">
               Forgot password?
