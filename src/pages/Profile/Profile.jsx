@@ -11,7 +11,9 @@ const Profile = () => {
         <Navbar />
       </div>
       <div className='profile-middle'>
+        This is a profile page
         <ProfileLeft />
+         
         <ProfileRight />
       </div>
     </div>
