@@ -1,0 +1,70 @@
+.container{
+    width:100vw;
+    height:100vh;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.container::before{
+    content:"";
+    width: 100%;
+    height: 100%;   
+    background-image: url(../../img/alumni.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-position: center;
+    position:absolute;
+    opacity: 0.4;
+}
+
+#dob{
+width: 200px
+}
+
+h3{
+margin: 30px;
+}
+
+.box{
+    z-index: 2;
+    min-height: 69vh;
+    width: 400px;
+    background-color: rgba(240, 248, 255, 0.693);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.box > input{
+    width: 300px;
+    outline: none;
+    padding: 12px;
+    margin: 8px;
+    box-sizing: border-box;
+    border-color:rgb(243, 225, 225);
+    border-radius: 12px;
+}
+
+.box > button{
+    width: 100px;
+    background-color: rgb(0, 140, 255);;
+    color: white;
+    font-size: 16px;
+    padding: 16px;
+    margin: 12px;
+    outline: none;
+    width: 300px;
+    border-color: rgb(0, 140, 255);
+    border-radius: 124px;
+    box-shadow:0 0 3px black;
+}
+
+.box > button:hover{
+    background-color: rgb(140, 137, 137);
+    border-color:rgb(140, 137, 137) ;
+}
