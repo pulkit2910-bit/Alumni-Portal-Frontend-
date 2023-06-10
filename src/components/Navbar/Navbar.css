@@ -2,6 +2,7 @@
   margin: 0;
   box-shadow: 0 2px 4px gray;
   position: sticky;
+  z-index: 3;
   padding: 0.5rem 1rem;
 }
 
@@ -53,7 +54,7 @@
   top: 100%;
   right: 0;
   width: 8rem;
-  z-index: 1;
+  z-index: 5;
   background-color: white;
   border-radius: 20px;
   padding: 1rem 1.5rem;

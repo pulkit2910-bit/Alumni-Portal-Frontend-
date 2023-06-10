@@ -3,6 +3,12 @@
     max-width: 100%;
     height: calc(100vh - 100px);
     overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+  }
+
+  .profile-page::-webkit-scrollbar {
+    display: none;
   }
   
   .profile-header {

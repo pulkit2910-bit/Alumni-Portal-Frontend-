@@ -8,6 +8,8 @@
 
 .edit-mode-right,
 .view-mode-right {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   border-radius: 1.5rem;
