@@ -1,0 +1,112 @@
+#containslefteditprofile{
+    height: calc(100vh - 100px);
+    width: auto;
+    overflow-x:auto;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+  .edit-mode-left,
+  .view-mode-left {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    padding: 30px;
+    margin-bottom: 30px;
+    height: auto;
+    background: rgba(251, 251, 251, 0.33);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.3px);
+    -webkit-backdrop-filter: blur(7.3px);
+    border: 1px solid rgba(253, 253, 253, 0.39);
+  }
+  
+  .edit-mode-left label,
+  .view-mode-left label {
+    display: block;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .edit-mode-left input[type="text"]{
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #d3dce6;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .edit-mode-left input[type="text"]:focus{
+    outline: none;
+    border-color: #0073b1;
+    box-shadow: 0 0 3px rgba(0, 115, 177, 0.3);
+  }
+    
+.edit-mode-left div:not(:last-child){
+    margin-top: 20px;
+      }
+  
+.edubutton {
+    width: fit-content;
+    margin-top: 9px;
+    background-color: #0073b1;
+    color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+.edubutton:hover{
+    background-color: #005a8c;
+  }
+
+  .view-mode-left p {
+    margin-left: 20px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: 13px;
+    color: #333333;
+    line-height: 1.5;
+  }
+  
+  .view-mode-left ul {
+    margin-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 3px
+  }
+  
+  .view-mode-left h4 {
+    margin-top:9px;
+    margin-bottom: 9px;
+  }
+  
+  .view-mode-left h5 {
+    margin: 6px;
+    font-size: 14px;
+  }
+  
+  .view-mode-left li {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  .view-mode-left hr {
+    margin-bottom: 24px;
+    margin-top: 24px;
+    width: 85%;
+    border: 1px solid var(--hrColor);
+    background-color: var(--hrColor);
+  }
+  .butatend{
+    display: flex;
+    justify-content:space-between;
+  }
+
+  .butatend2{
+    display: flex;
+    justify-content:flex-end;
+  }

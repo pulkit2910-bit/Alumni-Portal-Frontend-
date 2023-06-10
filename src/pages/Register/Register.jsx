@@ -14,7 +14,7 @@ const Register = () => {
             placeholder="Institute Roll Number (BTECH/1XXXX/XX)"
           />
           <input id="email" type="text" placeholder="Email address" />
-          <div>
+          <div className="dobinput">
             Date of Birth:
             <input
               id="dob"

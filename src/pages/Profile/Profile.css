@@ -7,6 +7,6 @@
 .profile-middle {
     padding : 0.25rem 0.75rem;
     display: grid;
-    grid-template-columns: 75% auto;
+    grid-template-columns: 22% auto 25%;
     gap: 1rem;
 }
