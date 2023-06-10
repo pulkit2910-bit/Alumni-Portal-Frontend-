@@ -69,6 +69,11 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
     setExperience(updatedExperience);
   };
   
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const date = new Date(dateString);
+    return date.toLocaleDateString(undefined, options);
+  };
 
 //html/jsx code
   return (
@@ -93,14 +98,18 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
               />
               <input
                 type="text"
-                placeholder="Start Date, ex: May 2020"
+                placeholder="Start Date"
                 value={edu.startDate}
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => (e.target.type = "text")}
                 onChange={(e) => handleEducationChange(e, index, 'startDate')}
               />
               <input
                 type="text"
-                placeholder="End Date , ex: May 2023"
+                placeholder="End Date"
                 value={edu.endDate}
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => (e.target.type = "text")}
                 onChange={(e) => handleEducationChange(e, index, 'endDate')}
               />
               {index !== 0 && (
@@ -118,10 +127,14 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
         <h4>Education :</h4>
         {education.map((edu, index) => (
         <div key={index}>
-          <h5>{edu.institution}</h5>
-          <p>{edu.degree}</p>
-          <p>{edu.startDate} - {edu.endDate}</p>
-          {index===(education.length-1)?(index===(education.length-1)):(<hr/>)}
+            { edu.institution?(<>
+            <h5>{edu.institution}</h5>
+            <p>{edu.degree}</p>
+            <p>{formatDate(edu.startDate)} {edu.endDate?(<> - {formatDate(edu.endDate)}</>):(<> - present</>)}</p>
+            {index===(education.length-1)?(index===(education.length-1)):(<hr/>)}
+            </>
+            ):
+            (edu.company='')}
         </div>
         ))}<div className="butatend2">
             <button className="edubutton" onClick={handleLeftEditClick}><AiOutlineEdit/></button>
@@ -151,14 +164,18 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
                   />
                   <input
                     type="text"
-                    placeholder="Start Date, ex: May 2023"
+                    placeholder="Start Date"
                     value={exp.startDate}
+                    onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => (e.target.type = "text")}
                     onChange={(e) => handleExperienceChange(e, index, 'startDate')}
                   />
                   <input
                     type="text"
-                    placeholder="End Date, ex: May 2023"
+                    placeholder="End Date"
                     value={exp.endDate}
+                    onFocus={(e) => (e.target.type = "date")}
+                    onBlur={(e) => (e.target.type = "text")}
                     onChange={(e) => handleExperienceChange(e, index, 'endDate')}
                   />
                   {index !== 0 && (
@@ -176,12 +193,17 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
             <h4>Experience:</h4>
               {experience.map((exp, index) => (
                 <div key={index}>
+                  { exp.company?(<>
                   <h5>{exp.company}</h5>
                   <p>{exp.position}</p>
-                  <p>{exp.startDate} - {exp.endDate}</p>
+                  <p>{formatDate(exp.startDate)} {exp.endDate?(<> - {formatDate(exp.endDate)}</>):(<> - present</>)}</p>
                   {index===(experience.length-1)?(index===(experience.length-1)):(<hr/>)}
+                  </>
+                  ):
+                  (exp.company='')}
                 </div>
-            ))}<div className="butatend2">
+            ))}
+            <div className="butatend2">
                 <button className="edubutton" onClick={handleLeft2EditClick}><AiOutlineEdit/></button>
               </div>
             </div>
