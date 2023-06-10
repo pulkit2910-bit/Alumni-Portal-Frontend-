@@ -131,7 +131,7 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
             <h5>{edu.institution}</h5>
             <p>{edu.degree}</p>
             <p>{formatDate(edu.startDate)} {edu.endDate?(<> - {formatDate(edu.endDate)}</>):(<> - present</>)}</p>
-            {index===(education.length-1)?(index===(education.length-1)):(<hr/>)}
+            {index===(education.length-1)?null:education[index+1].institution===''?null:(<hr/>)}
             </>
             ):
             (edu.company='')}
@@ -197,7 +197,7 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
                   <h5>{exp.company}</h5>
                   <p>{exp.position}</p>
                   <p>{formatDate(exp.startDate)} {exp.endDate?(<> - {formatDate(exp.endDate)}</>):(<> - present</>)}</p>
-                  {index===(experience.length-1)?(index===(experience.length-1)):(<hr/>)}
+                  {index===(experience.length-1)?null:experience[index+1].company===''?null:(<hr/>)}
                   </>
                   ):
                   (exp.company='')}
