@@ -93,24 +93,24 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
               />
               <input
                 type="text"
-                placeholder="Start Date"
+                placeholder="Start Date, ex: May 2020"
                 value={edu.startDate}
                 onChange={(e) => handleEducationChange(e, index, 'startDate')}
               />
               <input
                 type="text"
-                placeholder="End Date"
+                placeholder="End Date , ex: May 2023"
                 value={edu.endDate}
                 onChange={(e) => handleEducationChange(e, index, 'endDate')}
               />
               {index !== 0 && (
-                <button class="edubutton" onClick={() => deleteEducation(index)}>Delete</button>
+                <button className="edubutton" onClick={() => deleteEducation(index)}>Delete</button>
               )}
             </div>
           ))}
-          <div class="butatend">
-      <button class="edubutton" onClick={addEducation}>Add</button>
-      <button class="edubutton" onClick={handleLeftSaveClick}><AiOutlineSave/></button>
+          <div className="butatend">
+      <button className="edubutton" onClick={addEducation}>Add</button>
+      <button className="edubutton" onClick={handleLeftSaveClick}><AiOutlineSave/></button>
       </div>
     </div>
     ) : (
@@ -123,8 +123,8 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
           <p>{edu.startDate} - {edu.endDate}</p>
           {index===(education.length-1)?(index===(education.length-1)):(<hr/>)}
         </div>
-        ))}<div class="butatend2">
-            <button class="edubutton" onClick={handleLeftEditClick}><AiOutlineEdit/></button>
+        ))}<div className="butatend2">
+            <button className="edubutton" onClick={handleLeftEditClick}><AiOutlineEdit/></button>
           </div>
         </div>
       )}
@@ -151,24 +151,24 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
                   />
                   <input
                     type="text"
-                    placeholder="Start Date"
+                    placeholder="Start Date, ex: May 2023"
                     value={exp.startDate}
                     onChange={(e) => handleExperienceChange(e, index, 'startDate')}
                   />
                   <input
                     type="text"
-                    placeholder="End Date"
+                    placeholder="End Date, ex: May 2023"
                     value={exp.endDate}
                     onChange={(e) => handleExperienceChange(e, index, 'endDate')}
                   />
                   {index !== 0 && (
-                    <button class="edubutton" onClick={() => deleteExperience(index)}>Delete</button>
+                    <button className="edubutton" onClick={() => deleteExperience(index)}>Delete</button>
                   )}
                 </div>
               ))}
-              <div class="butatend">
-          <button class="edubutton" onClick={addExperience}>Add</button>
-          <button class="edubutton" onClick={handleLeft2SaveClick}><AiOutlineSave/></button>
+              <div className="butatend">
+          <button className="edubutton" onClick={addExperience}>Add</button>
+          <button className="edubutton" onClick={handleLeft2SaveClick}><AiOutlineSave/></button>
           </div>
         </div>
         ) : (
@@ -181,8 +181,8 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
                   <p>{exp.startDate} - {exp.endDate}</p>
                   {index===(experience.length-1)?(index===(experience.length-1)):(<hr/>)}
                 </div>
-            ))}<div class="butatend2">
-                <button class="edubutton" onClick={handleLeft2EditClick}><AiOutlineEdit/></button>
+            ))}<div className="butatend2">
+                <button className="edubutton" onClick={handleLeft2EditClick}><AiOutlineEdit/></button>
               </div>
             </div>
           )}

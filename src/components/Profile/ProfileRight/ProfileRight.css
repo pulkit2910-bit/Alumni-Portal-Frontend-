@@ -23,7 +23,7 @@
   border: 1px solid rgba(253, 253, 253, 0.39);
 }
 
-.edit-mode-right div,
+.edit-mode-right div:not(.socminputbox):not(.socminputbox>div),
 .view-mode-right div {
   margin-bottom: 20px;
 }
@@ -120,3 +120,16 @@
   border: 1px solid var(--hrColor);
   background-color: var(--hrColor);
 }
+
+#socmheading{
+  margin-bottom: 6px;
+}
+
+.socminputbox button{
+  margin-top:9px;
+}
+
+.socminputbox>div:not(:last-child):not(:nth-last-child(2)){
+  margin-bottom:10px;
+}
+

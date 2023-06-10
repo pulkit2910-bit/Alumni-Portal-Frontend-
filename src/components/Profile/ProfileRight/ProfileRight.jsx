@@ -13,8 +13,24 @@ const ProfileRight = () => {
   let [altemail, setAltEmail] = useState('');
   let [phoneno, setPhoneNo] = useState(919999999999);
   let [altphoneno, setAltPhoneNo] = useState('');
-  let [socialhandles, setSocialHandles] = useState(['Linkedin > https://in.linkedin.com/in/aditya-sharma-701819174','Instagram > https://www.instagram.com/cristiano/']); //it's an array
+  let [socialhandles, setSocialHandles] = useState([{ socialmedianame: '', profilelink: ''},]); //it's an object
   let [isEditRightMode, setIsEditRightMode] = useState(false);
+
+  const handleSocialMediaChange = (e, index, field) => {
+    const updatedSocialMedia = [...socialhandles];
+    updatedSocialMedia[index][field] = e.target.value;
+    setSocialHandles(updatedSocialMedia);
+  };
+
+  const addSocialHandles = () => {
+    setSocialHandles([...socialhandles, { socialmedianame: '', profilelink: ''}]);
+  };
+
+  const deleteSocialHandles = (index) => {
+    const updatedSocialMedia = [...socialhandles];
+    updatedSocialMedia.splice(index, 1);
+    setSocialHandles(updatedSocialMedia);
+  };
 
 
 //for contacts edit button
@@ -90,15 +106,27 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
               onChange={(e) => setAltPhoneNo(e.target.valueAsNumber)}
             ></input>
           </div>
+          <div className='socminputbox'>
+          <label htmlFor="education" id="socmheading">Social Handles :</label>
+          {socialhandles.map((socm, index) => (
+            <div key={index} >
+              <input
+                type="text"
+                placeholder="Social Media Name"
+                value={socm.socialmedianame}
+                onChange={(e) => handleSocialMediaChange(e, index, 'socialmedianame')}
+              />
+              <input
+                type="text"
+                placeholder="Profile Link"
+                value={socm.profilelink}
+                onChange={(e) => handleSocialMediaChange(e, index, 'profilelink')}
+              />
+              {index !== 0 && (<button className="socmbutton" onClick={() => deleteSocialHandles(index)}>Delete</button>)}
+          </div>))}
           <div>
-          <label htmlFor="socialhandles">Social Handles:</label>
-            <textarea
-              type="text"
-              id="socialhandles"
-              placeholder='add links and seprate them by comma (,) AND seprate handlename and link by(>). ex: Linkedin > lnkdn.com/abc , ex: Twitter > twiiter.com/abc'
-              value={socialhandles.join(',')}
-              onChange={(e) => setSocialHandles(e.target.value.split(','))}
-            />
+          <button className="socmbutton" onClick={addSocialHandles}>Add</button>
+        </div>
           </div>
           <button onClick={handleRightSaveClick}><AiOutlineSave/></button>
         </div>
@@ -112,8 +140,8 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
           <hr />
           <h4>Social Handles <SlSocialInstagram/> <SlSocialLinkedin/> <SlSocialTwitter/> :</h4>
           <ul>
-            {socialhandles.map((socialhandle, index) => (
-              <li key={index}>{<a href={socialhandle.split('>')[1]}>{socialhandle.split('>')[0]}</a>}</li>
+          {socialhandles.map((socm, index) => (
+              <li key={index}>{<a href={socm.profilelink}>{socm.socialmedianame}</a>}</li>
             ))}
           </ul>
  
