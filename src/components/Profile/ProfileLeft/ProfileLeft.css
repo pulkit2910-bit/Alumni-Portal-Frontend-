@@ -28,7 +28,8 @@
     color: #333333;
   }
   
-  .edit-mode-left input[type="text"]{
+  .edit-mode-left input[type="text"],
+  .edit-mode-left input[type="date"]{
     width: 97%;
     padding: 10px;
     border: 1px solid #d3dce6;
@@ -36,7 +37,8 @@
     font-size: 14px;
   }
 
-  .edit-mode-left input[type="text"]:focus{
+  .edit-mode-left input[type="text"]:focus,
+  .edit-mode-left input[type="dext"]:focus{
     outline: none;
     border-color: #0073b1;
     box-shadow: 0 0 3px rgba(0, 115, 177, 0.3);
