@@ -40,7 +40,7 @@ margin: 30px;
     box-sizing: border-box;
 }
 
-.box > input{
+.box > input, .dobinput > input{
     width: 300px;
     outline: none;
     padding: 12px;

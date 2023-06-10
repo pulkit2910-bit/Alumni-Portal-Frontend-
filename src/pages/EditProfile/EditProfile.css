@@ -1,0 +1,109 @@
+/* .profile-page {
+    max-width: 100%;
+    height: 100vh;
+    margin: 0;
+    overflow: scroll;
+    padding: 0;
+  }
+  
+  .profile-header {
+    margin-bottom: 20px;
+  }
+
+  .profile-picture {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .edit-mode,
+  .view-mode {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid #e1e9ef;
+  }
+  
+  .edit-mode div,
+  .view-mode div {
+    margin-bottom: 20px;
+  }
+  
+  .edit-mode label,
+  .view-mode label {
+    display: block;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .edit-mode input[type="text"],
+  .edit-mode textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d3dce6;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .edit-mode input[type="text"]:focus,
+  .edit-mode textarea:focus {
+    outline: none;
+    border-color: #0073b1;
+    box-shadow: 0 0 3px rgba(0, 115, 177, 0.3);
+  }
+  
+  .edit-mode button,
+  .view-mode button {
+    background-color: #0073b1;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .edit-mode button:hover,
+  .view-mode button:hover {
+    background-color: #005a8c;
+  }
+  
+  .view-mode {
+    border: none;
+  }
+  
+  .view-mode p {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .view-mode ul {
+    margin-left: 20px;
+  }
+  
+  .view-mode li {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  .view-mode button {
+    background-color: transparent;
+    color: #0073b1;
+    padding: 0;
+    text-decoration: underline;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .view-mode button:hover {
+    color: #005a8c;
+  }
+   */
