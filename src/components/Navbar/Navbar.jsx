@@ -73,9 +73,9 @@ const Navbar = () => {
             <GoCalendar />
           </div>
           <div title="People"> 
-          {/* <Link to="/search" > */}
+          <Link to="/search" >
             <SlPeople />
-          {/* </Link> */}
+          </Link>
           </div>
           <div title="Map">
             <GoLocation />
