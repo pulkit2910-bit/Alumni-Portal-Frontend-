@@ -7,6 +7,7 @@ import ProfilePic from "../../../src/img/img1.png";
 import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
 import { CiUser, CiEdit, CiLogout } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 const DropdownItem = ({ item }) => {
   // const { dispatch } = useContext(AuthContext);
@@ -70,8 +71,10 @@ const Navbar = () => {
           <div title="Events">
             <GoCalendar />
           </div>
-          <div title="People">
+          <div title="People"> 
+          {/* <Link to="/search" > */}
             <SlPeople />
+          {/* </Link> */}
           </div>
           <div title="Map">
             <GoLocation />

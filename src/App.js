@@ -4,7 +4,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
-import EditProfile from './pages/EditProfile/EditProfile';
+import Search from './pages/Search/Search';
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />
-          {/* <Route exact path="/edit-profile" element={<EditProfile />} /> */}
+         <Route exact path="/search" element={<Search />} />
         </Routes>
       </BrowserRouter>
     </div>
