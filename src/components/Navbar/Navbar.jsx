@@ -7,11 +7,12 @@ import ProfilePic from "../../../src/img/img1.png";
 import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
 import { CiUser, CiEdit, CiLogout } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const DropdownItem = ({ item }) => {
   // const { dispatch } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // const logout = async () => {
   //   dispatch({ type: "INTITIAL_STATE" });
@@ -21,8 +22,9 @@ const DropdownItem = ({ item }) => {
 
   const handleClick = (e) => {
     e.preventDefault();
-    // if (item.id === 0) {
-    //   navigate("/profile");
+    if (item.id === 0) {
+      navigate("/profile");
+    }
     // } else if (item.id === 1) {
     //   navigate("/edit-profile");
     // } else if (item.id === 2) {
@@ -45,8 +47,7 @@ const Navbar = () => {
   const settings = useRef();
   const options = [
     { label: "My Profile", icon: <CiUser />, id: 0 },
-    { label: "Edit Profile", icon: <CiEdit />, id: 1 },
-    { label: "Logout", icon: <CiLogout />, id: 2 },
+    { label: "Logout", icon: <CiLogout />, id: 1 },
   ];
 
   useEffect(() => {

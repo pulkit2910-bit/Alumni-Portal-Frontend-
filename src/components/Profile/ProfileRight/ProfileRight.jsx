@@ -10,24 +10,25 @@ import { GrAchievement } from "react-icons/gr";
 
 const ProfileRight = () => {
   let [email, setEmail] = useState('xyz@email.com');
-  let [altemail, setAltEmail] = useState('');
-  let [phoneno, setPhoneNo] = useState(919999999999);
-  let [altphoneno, setAltPhoneNo] = useState('');
-  let [socialhandles, setSocialHandles] = useState([{ socialmedianame: '', profilelink: ''},]); //it's an object
+  let [altEmail, setAltEmail] = useState('');
+  let [phoneNo, setPhoneNo] = useState(919999999999);
+  let [altPhoneNo, setAltPhoneNo] = useState('');
+  let [socialHandles, setSocialHandles] = useState([{ socialmedianame: '', profilelink: ''},]); //it's an object
   let [isEditRightMode, setIsEditRightMode] = useState(false);
 
   const handleSocialMediaChange = (e, index, field) => {
-    const updatedSocialMedia = [...socialhandles];
+    const updatedSocialMedia = [...socialHandles];
     updatedSocialMedia[index][field] = e.target.value;
     setSocialHandles(updatedSocialMedia);
   };
 
   const addSocialHandles = () => {
-    setSocialHandles([...socialhandles, { socialmedianame: '', profilelink: ''}]);
+    setSocialHandles([...socialHandles, { socialmedianame: '', profilelink: ''}]);
   };
 
   const deleteSocialHandles = (index) => {
-    const updatedSocialMedia = [...socialhandles];
+    const updatedSocialMedia = [...socialHandles];
+    updatedSocialMedia.splice(index, 1);
     updatedSocialMedia.splice(index, 1);
     setSocialHandles(updatedSocialMedia);
   };
@@ -75,40 +76,40 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
             />
           </div>
           <div>
-            <label htmlFor="altemail">Aleternate Email:</label>
+            <label htmlFor="altEmail">Aleternate Email:</label>
             <input
               type="text"
-              id="altemail"
+              id="altEmail"
               placeholder='alternate email id'
-              value={altemail}
+              value={altEmail}
               onChange={(e) => setAltEmail(e.target.value)}
             />
           </div>
           <div>
-            <label htmlFor="phoneno">Phone Number:</label>
+            <label htmlFor="phoneNo">Phone Number:</label>
             <input
               type="number"
-              id="phoneno"
+              id="phoneNo"
               placeholder='along with std code ex:919999999999'
               onWheelCapture={(e) => e.target.blur()}              
-              value={phoneno}
+              value={phoneNo}
               onChange={(e) => setPhoneNo(e.target.valueAsNumber)}
             />
           </div>
           <div>
-            <label htmlFor="altphoneno">Aleternate Phone Number:</label>
+            <label htmlFor="altPhoneNo">Aleternate Phone Number:</label>
             <input
               type="number"
-              id="altphoneno"
+              id="altPhoneNo"
               placeholder='along with std code ex:919999999999'
               onWheelCapture={(e) => e.target.blur()}
-              value={altphoneno}
+              value={altPhoneNo}
               onChange={(e) => setAltPhoneNo(e.target.valueAsNumber)}
             ></input>
           </div>
           <div className='socminputbox'>
           <label htmlFor="education" id="socmheading">Social Handles :</label>
-          {socialhandles.map((socm, index) => (
+          {socialHandles.map((socm, index) => (
             <div key={index} >
               <input
                 type="text"
@@ -134,13 +135,13 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
         <div className="view-mode-right">
           <h4>Contacts <AiOutlineContacts/> :</h4>
           { email? (<p>Email: {email}</p>):(email='')}
-          { altemail? (<p>Alternate Email: {altemail}</p>):(altemail='')}
-          { phoneno? (<p>Phone Number: +{phoneno}</p>):(phoneno='')}
-          { altphoneno? (<p>Alternate Phone Number: +{altphoneno}</p>):(altphoneno='')}
+          { altEmail? (<p>Alternate Email: {altEmail}</p>):(altEmail='')}
+          { phoneNo? (<p>Phone Number: +{phoneNo}</p>):(phoneNo='')}
+          { altPhoneNo? (<p>Alternate Phone Number: +{altPhoneNo}</p>):(altPhoneNo='')}
           <hr />
           <h4>Social Handles <SlSocialInstagram/> <SlSocialLinkedin/> <SlSocialTwitter/> :</h4>
           <ul>
-          {socialhandles.map((socm, index) => (
+          {socialHandles.map((socm, index) => (
               <li key={index}>{<a href={socm.profilelink}>{socm.socialmedianame}</a>}</li>
             ))}
           </ul>
