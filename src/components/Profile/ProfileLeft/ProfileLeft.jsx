@@ -36,6 +36,7 @@ const ProfileLeft = () => {
   };
 
   const handleLeftSaveClick = () => {
+    console.log(education)
     setIsEditLeftMode(false);
   };
 
@@ -50,6 +51,7 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
   };
 
   const handleLeft2SaveClick = () => {
+    console.log(experience)
     setIsEditLeft2Mode(false);
   };
 
