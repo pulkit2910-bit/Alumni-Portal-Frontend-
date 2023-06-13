@@ -1,0 +1,12 @@
+.ViewProfile  {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.view-profile-middle {
+    padding : 0.25rem 0.75rem;
+    display: grid;
+    grid-template-columns: 22% auto 25%;
+    gap: 1rem;
+}

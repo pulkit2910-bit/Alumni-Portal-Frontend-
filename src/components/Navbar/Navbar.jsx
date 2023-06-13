@@ -8,7 +8,7 @@ import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
 import { CiUser, CiEdit, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";  
 
 const DropdownItem = ({ item }) => {
   // const { dispatch } = useContext(AuthContext);
@@ -26,9 +26,10 @@ const DropdownItem = ({ item }) => {
       navigate("/profile");
     }
     // } else if (item.id === 1) {
-    //   navigate("/edit-profile");
-    // } else if (item.id === 2) {
-    //   logout();
+    //   navigate("/edit-profile");}
+    // else if (item.id === 1) {
+    //   // logout();
+    //   // navigate("/login");      
     // }
   };
 
@@ -56,7 +57,7 @@ const Navbar = () => {
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handler);
+    // document.addEventListener("mousedown", handler);
   }, [open]);
 
   return (
@@ -67,7 +68,9 @@ const Navbar = () => {
         </div>
         <div className="navIcons">
           <div title="Home">
+          <Link to="/" >
             <GoHome />
+            </Link>
           </div>
           <div title="Events">
             <GoCalendar />

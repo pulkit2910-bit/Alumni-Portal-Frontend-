@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Profile from './pages/Profile/Profile';
 import Search from './pages/Search/Search';
+import ViewProfile from './pages/View profile/ViewProfile';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />
-         <Route exact path="/search" element={<Search />} />
+          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/view-profile" element={<ViewProfile/>} />
         </Routes>
       </BrowserRouter>
     </div>
