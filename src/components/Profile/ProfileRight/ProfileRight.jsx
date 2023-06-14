@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './ProfileRight.css'
 import { useState } from 'react';
 import { AiOutlineEdit } from "react-icons/ai";
@@ -6,14 +6,17 @@ import { AiOutlineSave } from "react-icons/ai";
 import { AiOutlineContacts } from "react-icons/ai";
 import { SlSocialInstagram , SlSocialLinkedin , SlSocialTwitter} from "react-icons/sl";
 import { GrAchievement } from "react-icons/gr";
-
+import { AuthContext } from '../../../Context/AuthContext/AuthContext';
+import { editAchievements, editContactDetailsCall } from '../../../apiCalls/profile';
 
 const ProfileRight = () => {
-  let [email, setEmail] = useState('xyz@email.com');
-  let [altEmail, setAltEmail] = useState('');
-  let [phoneNo, setPhoneNo] = useState(919999999999);
-  let [altPhoneNo, setAltPhoneNo] = useState('');
-  let [socialHandles, setSocialHandles] = useState([{ socialmedianame: '', profilelink: ''},]); //it's an object
+  const { user, dispatch } = useContext(AuthContext);
+
+  let [email, setEmail] = useState(user.email);
+  let [altEmail, setAltEmail] = useState(user.altEmail);
+  let [phoneNo, setPhoneNo] = useState(user.phoneNo);
+  let [altPhoneNo, setAltPhoneNo] = useState(user.altPhoneNo);
+  let [socialHandles, setSocialHandles] = useState(user.socialHandles.length!==0 ? user.socialHandles : [{ socialmedianame: '', profilelink: ''},]); //it's an object
   let [isEditRightMode, setIsEditRightMode] = useState(false);
 
   const handleSocialMediaChange = (e, index, field) => {
@@ -41,13 +44,22 @@ const ProfileRight = () => {
   };
 
   const handleRightSaveClick = () => {
+    const details = {
+      "email" : email,
+      "altEmail" : altEmail,
+      "phoneNo" : phoneNo,
+      "altPhoneNo" : altPhoneNo,
+      "socialHandles" : socialHandles
+    }
+    // console.log(details);
+    editContactDetailsCall(user, details, dispatch);
     setIsEditRightMode(false);
   };
 
 
 //for achievements edit button
 
-let [achievements, setAchievements] = useState(['JEE Main Rank 6633','JEE Advanced disqualified']); //it's an array
+let [achievements, setAchievements] = useState(user.achievements); //it's an array
 let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
 
   const handleRight2EditClick = () => {
@@ -55,6 +67,8 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
   };
 
   const handleRight2SaveClick = () => {
+    // console.log(achievements)
+    editAchievements(user, achievements, dispatch);
     setIsEditRight2Mode(false);
   };
 

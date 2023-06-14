@@ -1,17 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import './ProfileCenter.css'
 import { useState } from 'react';
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
 import Cover from "../../../../src/img/cover.jpg";
 import ProfilePic from "../../../../src/img/img1.png";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+import { editBasicDetailsCall } from "../../../apiCalls/profile";
 
 const ProfileCenter = () => {
-  const [name, setName] = useState('John Doe');
-  const [title, setTitle] = useState('Software Engineer');
-  const [location, setLocation] = useState('San Francisco, CA');
-  const [about, setAbout] = useState('Experienced software engineer with a passion for web development.');
-  const [skills, setSkills] = useState(['JavaScript', 'React.js', 'Node.js', 'HTML', 'CSS']);
+  const { user, dispatch } = useContext(AuthContext);
+
+  const [name, setName] = useState(user.name);
+  const [title, setTitle] = useState(user.title);
+  const [location, setLocation] = useState(user.location);
+  const [about, setAbout] = useState(user.about);
+  const [skills, setSkills] = useState(user.skills);
   const [isEditMode, setIsEditMode] = useState(false);
 
   const handleEditClick = () => {
@@ -19,6 +23,14 @@ const ProfileCenter = () => {
   };
 
   const handleSaveClick = () => {
+    const details = {
+      "name" : name,
+      "title" : title,
+      "location" : location,
+      "about" : about,
+      "skills" : skills,
+    }
+    editBasicDetailsCall(user, details, dispatch);
     setIsEditMode(false);
   };
 

@@ -1,36 +1,35 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import "./Navbar.css";
-
+import axios from "axios";
 // icons
 import Logo from "../../../src/img/logo.png";
 import ProfilePic from "../../../src/img/img1.png";
 import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
-import { CiUser, CiEdit, CiLogout } from "react-icons/ci";
+import { CiUser, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";  
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const DropdownItem = ({ item }) => {
-  // const { dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // const logout = async () => {
-  //   dispatch({ type: "INTITIAL_STATE" });
-  //   const res = await axios.post("/auth/logout");
-  //   console.log(res);
-  // };
+  const logout = async () => {
+    dispatch({ type: "INTITIAL_STATE" });
+    await axios.post("/auth/logout");
+    alert("User Logged Out");
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
     if (item.id === 0) {
       navigate("/profile");
     }
-    // } else if (item.id === 1) {
-    //   navigate("/edit-profile");}
-    // else if (item.id === 1) {
-    //   // logout();
-    //   // navigate("/login");      
-    // }
+    else if (item.id === 1) {
+      logout();
+      navigate("/login");      
+    }
   };
 
   return (
@@ -50,7 +49,7 @@ const Navbar = () => {
     { label: "My Profile", icon: <CiUser />, id: 0 },
     { label: "Logout", icon: <CiLogout />, id: 1 },
   ];
-  
+
   // drop down feature not working
   // useEffect(() => {
   //   const handler = (e) => {

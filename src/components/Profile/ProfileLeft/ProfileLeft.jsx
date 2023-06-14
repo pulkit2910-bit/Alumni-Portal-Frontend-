@@ -1,18 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './ProfileLeft.css'
 import { useState } from 'react';
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
-
+import { AuthContext } from "../../../Context/AuthContext/AuthContext"
+import { editEducationCall, editExperienceCall } from '../../../apiCalls/profile';
 
 const ProfileLeft = () => {
-
+  const { user, dispatch } = useContext(AuthContext);
 
 //for Education edit button
-
-  let [education, setEducation] = useState([
-    { institution: '', degree: '', startDate: '', endDate: '' },
-  ]);
+  let [education, setEducation] = useState(user.education);
   let [isEditLeftMode, setIsEditLeftMode] = useState(false);
 
   const handleEducationChange = (e, index, field) => {
@@ -36,14 +34,15 @@ const ProfileLeft = () => {
   };
 
   const handleLeftSaveClick = () => {
-    console.log(education)
+    // console.log(education)
+    editEducationCall(user, education, dispatch);
     setIsEditLeftMode(false);
   };
 
 
 //for Experiences edit button
 
-const [experience, setExperience] = useState([  { company: '', position: '', startDate: '', endDate: '' },]); //it's an array of objects
+const [experience, setExperience] = useState(user.experience); //it's an array of objects
 let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
 
   const handleLeft2EditClick = () => {
@@ -51,7 +50,8 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
   };
 
   const handleLeft2SaveClick = () => {
-    console.log(experience)
+    // console.log(experience)
+    editExperienceCall(user, experience, dispatch)
     setIsEditLeft2Mode(false);
   };
 
@@ -136,7 +136,7 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
             {index===(education.length-1)?null:education[index+1].institution===''?null:(<hr/>)}
             </>
             ):
-            (edu.company='')}
+            (edu.institution='')}
         </div>
         ))}<div className="butatend2">
             <button className="edubutton" onClick={handleLeftEditClick}><AiOutlineEdit/></button>
