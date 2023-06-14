@@ -50,14 +50,16 @@ const Navbar = () => {
     { label: "Logout", icon: <CiLogout />, id: 1 },
   ];
 
-  useEffect(() => {
-    const handler = (e) => {
-      if (!settings.current.contains(e.target)) {
-        setOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-  }, [open]);
+  // drop down feature not working
+  
+  // useEffect(() => {
+  //   const handler = (e) => {
+  //     if (e.target && !settings.current.contains(e.target)) {
+  //       setOpen(false);
+  //     }
+  //   };
+  //   document.addEventListener("mousedown", handler);
+  // }, [open]);
 
   return (
     <div className="Navbar">
@@ -67,7 +69,9 @@ const Navbar = () => {
         </div>
         <div className="navIcons">
           <div title="Home">
+            <Link to='/'>
             <GoHome />
+            </Link>
           </div>
           <div title="Events">
             <GoCalendar />
