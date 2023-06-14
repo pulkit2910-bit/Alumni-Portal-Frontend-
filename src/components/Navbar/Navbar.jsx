@@ -8,7 +8,7 @@ import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
 import { CiUser, CiEdit, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";  
 
 const DropdownItem = ({ item }) => {
   // const { dispatch } = useContext(AuthContext);
@@ -26,9 +26,10 @@ const DropdownItem = ({ item }) => {
       navigate("/profile");
     }
     // } else if (item.id === 1) {
-    //   navigate("/edit-profile");
-    // } else if (item.id === 2) {
-    //   logout();
+    //   navigate("/edit-profile");}
+    // else if (item.id === 1) {
+    //   // logout();
+    //   // navigate("/login");      
     // }
   };
 
@@ -49,16 +50,15 @@ const Navbar = () => {
     { label: "My Profile", icon: <CiUser />, id: 0 },
     { label: "Logout", icon: <CiLogout />, id: 1 },
   ];
-
-  // drop down feature not working
   
+  // drop down feature not working
   // useEffect(() => {
   //   const handler = (e) => {
-  //     if (e.target && !settings.current.contains(e.target)) {
+  //     if (!settings.current.contains(e.target)) {
   //       setOpen(false);
   //     }
   //   };
-  //   document.addEventListener("mousedown", handler);
+    // document.addEventListener("mousedown", handler);
   // }, [open]);
 
   return (
@@ -69,7 +69,7 @@ const Navbar = () => {
         </div>
         <div className="navIcons">
           <div title="Home">
-            <Link to='/'>
+          <Link to="/" >
             <GoHome />
             </Link>
           </div>
