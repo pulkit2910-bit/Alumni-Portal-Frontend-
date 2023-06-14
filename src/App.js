@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
           <Route exact path="/search" element={<Search />} />
-          <Route exact path="/view-profile" element={<ViewProfile/>} />
+          <Route exact path="/view-profile/:userID" element={<ViewProfile/>} />
         </Routes>
       </BrowserRouter>
     </div>

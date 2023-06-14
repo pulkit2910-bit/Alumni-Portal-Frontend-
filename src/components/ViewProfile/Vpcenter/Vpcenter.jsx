@@ -3,12 +3,13 @@ import '../../Profile/ProfileCenter/ProfileCenter.css'
 import Cover from "../../../../src/img/cover.jpg";
 import ProfilePic from "../../../../src/img/img1.png";
 
-const Vpcenter = () => {
-  const name='John Doe';
-  const title='Software Engineer';
-  const location='San Francisco, CA';
-  const about=('Experienced software engineer with a passion for web development.');
-  const skills=['JavaScript', 'React.js', 'Node.js', 'HTML', 'CSS'];
+const Vpcenter = ({ user }) => {
+  let name = user.name;
+  let title = user.title;
+  let rollNumber = user.rollNumber;
+  let location = user.location;
+  let about = user.about;
+  let skills = user.skills;
 
   return (
     <div className="profile-page">
@@ -21,6 +22,9 @@ const Vpcenter = () => {
         <span>{name}</span>
       </div>
       <div className='profilepageCard-options'>
+        <div>
+            {rollNumber}
+        </div>
         <div>
             {title}
         </div>

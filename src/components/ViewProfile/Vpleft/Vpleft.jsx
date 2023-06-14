@@ -1,9 +1,11 @@
 import React from 'react'
 import '../../Profile/ProfileLeft/ProfileLeft.css'
 
-const Vpleft = () => {
-  let education=[{ institution: '', degree: '', startDate: '', endDate: '' },]
-  let experience = [{ company: '', position: '', startDate: '', endDate: '' },]
+const Vpleft = ({ user }) => {
+
+  let education = user.education;
+  let experience = user.experience;
+  console.log(experience);
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date(dateString);
@@ -15,16 +17,16 @@ const Vpleft = () => {
     <div>
       <div className="view-mode-left">
         <h4>Education :</h4>
-        {education.map((edu, index) => (
+        {education?.map((edu, index) => (
         <div key={index}>
-            { edu.institution?(<>
-            <h5>{edu.institution}</h5>
-            <p>{edu.degree}</p>
-            <p>{formatDate(edu.startDate)} {edu.endDate?(<> - {formatDate(edu.endDate)}</>):(<> - present</>)}</p>
-            {index===(education.length-1)?null:education[index+1].institution===''?null:(<hr/>)}
-            </>
-            ):
-            (edu.company='')}
+          { edu.institution?(<>
+          <h5>{edu.institution}</h5>
+          <p>{edu.degree}</p>
+          <p>{formatDate(edu.startDate)} {edu.endDate?(<> - {formatDate(edu.endDate)}</>):(<> - present</>)}</p>
+          {index===(education.length-1)?null:education[index+1].institution===''?null:(<hr/>)}
+          </>
+          ):
+          (edu.company='')}
         </div>
         ))}
         </div>
@@ -32,7 +34,7 @@ const Vpleft = () => {
     <div>
         <div className="view-mode-left">
           <h4>Experience:</h4>
-            {experience.map((exp, index) => (
+            {experience?.map((exp, index) => (
               <div key={index}>
                 { exp.company?(<>
                 <h5>{exp.company}</h5>

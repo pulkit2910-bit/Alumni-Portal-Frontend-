@@ -46,6 +46,9 @@ const ProfileCenter = () => {
       </div>
       <div className='profilepageCard-options'>
         <div>
+            {user.rollNumber}
+        </div>
+        <div>
             {title}
         </div>
         <div>
