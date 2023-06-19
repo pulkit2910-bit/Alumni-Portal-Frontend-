@@ -16,11 +16,11 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={user ? <Home /> : <Login />} />
-          <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-          <Route exact path="/register" element={<Register />} />
+          <Route exact path="/" element={user ? <Home /> : <Login /> } />
+          <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login /> } />
+          <Route exact path="/register" element={user ? <Navigate to="/profile" /> : <Register /> } />
           <Route exact path="/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
-          <Route exact path="/search" element={<Search />} />
+          <Route exact path="/search" element={user ? <Search /> : <Navigate to="/" /> } />
           <Route exact path="/view-profile/:userID" element={<ViewProfile/>} />
         </Routes>
       </BrowserRouter>

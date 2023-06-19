@@ -13,8 +13,12 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     loginCall({ email: email.current.value, password : password.current.value }, dispatch);
-    if (error && error.response.data.status === 400) alert(error.response.data.message);
-    if (error && error.response.data.status === 404) alert(error.response.data.message);
+    if (error && error.response.status === 400) {
+      alert(error.response.data.message); return;
+    }
+    if (error && error.response.status === 404) {
+      alert(error.response.data.message); return;
+    }
     alert("Login Success");
   }
 

@@ -138,7 +138,7 @@
 }
 
 .profile-card {
-  width: 12%;
+  min-width: 12%;
   background-color: #fff;
   padding: 20px;
   display: flex;
@@ -300,39 +300,6 @@
   background-color: #0056b3;
 }
 
-.results-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap:wrap;
-  padding: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  overflow-y: auto;
-}
-
-.profile-card {
-  width: 16%;
-  background-color: #fff;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 1.5rem;
-  position: relative;
-  overflow-x: clip;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(7.3px);
-  -webkit-backdrop-filter: blur(7.3px);
-  border: 1px solid rgba(253, 253, 253, 0.39);
-  transition: box-shadow 0.3s ease-in-out;
-  align-items: center;
-}
-
-
-.profile-card:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-
 .upperprofilecard {
 display: flex;
 flex-direction: row;
@@ -388,6 +355,8 @@ flex-direction: row;
 }
 
 .profile-degree-batch {
+  display: flex;
+  justify-content: center;
   margin-top: 10px;
   font-weight: 100;
   margin-bottom: 0%;

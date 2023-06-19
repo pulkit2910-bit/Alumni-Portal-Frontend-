@@ -1,17 +1,16 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import "./Register.css";
-import { useNavigate } from "react-router-dom";
 import { registerCall } from "../../apiCalls/auth";
+import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
 const Register = () => {
+  const { isFetching, dispatch } = useContext(AuthContext);
   const name = useRef();
   const rollNumber = useRef();
   const email = useRef();
   const dob = useRef();
   const password = useRef();
   const re_password = useRef();
-
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,9 +27,7 @@ const Register = () => {
       "dob" : dob.current.value,
       "password" : password.current.value,
     }
-    registerCall(userCredentials)
-
-    navigate("/profile");
+    registerCall(userCredentials, dispatch);
   }
 
   return (
@@ -58,7 +55,7 @@ const Register = () => {
           </div>
           <input id="pwd" type="password" placeholder="New password" ref={password} />
           <input id="repwd" type="password" placeholder="Re-enter password" ref={re_password} />
-          <button type="submit" >Register</button>
+          <button type="submit" >{isFetching ? "Signing Up..." : "Register"}</button>
         </form>
       </div>
     </div>

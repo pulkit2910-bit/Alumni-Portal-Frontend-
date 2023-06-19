@@ -1,10 +1,13 @@
 import axios from "axios";
 
-const registerCall = async (userCredentials) => {
+const registerCall = async (userCredentials, dispatch) => {
+    dispatch({ type : "REGISTER_START" });
     try {
-        await axios.post("/auth/register", userCredentials);
+        const res = await axios.post("/auth/register", userCredentials);
+        dispatch({ type : "REGISTER_SUCCESS", payload : res.data.user });
         alert("User register successful");
     } catch (err) {
+        dispatch({ type: "REGISTER_FAILURE", payload : err });
         console.log(err);
     }
 }
