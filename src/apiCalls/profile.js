@@ -29,7 +29,12 @@ const editExperienceCall = async (user, details, dispatch) => {
 const editBasicDetailsCall = async (user, details, dispatch) => {
     try {
         dispatch({ type : "UPDATE_USER_START", payload : user });
-        const res = await axios.put('/user/edit-profile', details);
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        const res = await axios.put('/user/edit-profile', details, config);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Details updated !");

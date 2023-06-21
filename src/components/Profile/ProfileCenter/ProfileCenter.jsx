@@ -1,10 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import './ProfileCenter.css'
 import { useState } from 'react';
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
 import Cover from "../../../../src/img/cover.jpg";
-import ProfilePic from "../../../../src/img/img1.png";
 import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import { editBasicDetailsCall } from "../../../apiCalls/profile";
 
@@ -18,20 +17,40 @@ const ProfileCenter = () => {
   const [skills, setSkills] = useState(user.skills);
   const [isEditMode, setIsEditMode] = useState(false);
 
-  const handleEditClick = () => {
-    setIsEditMode(true);
-  };
+  const profilePicRef = useRef();
+  const [editProfilePicDisplay, setEditProfilePicDisplay] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
+  const [profilePicPath, setProfilePicPath] = useState(user.avatar.url);
+
+  const handleMouseOver = () => {
+    if (isEditMode) setEditProfilePicDisplay(true);
+  }
+  
+  const handleMouseOut = () => {
+    if (isEditMode) setEditProfilePicDisplay(false);
+  }
+
+  const handleProfilePicChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const img = e.target.files[0];
+      setProfilePic(img);
+      const imgUrl = URL.createObjectURL(img);
+      setProfilePicPath(imgUrl);
+    }
+  }
 
   const handleSaveClick = () => {
-    const details = {
-      "name" : name,
-      "title" : title,
-      "location" : location,
-      "about" : about,
-      "skills" : skills,
-    }
-    editBasicDetailsCall(user, details, dispatch);
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("profile-pic", profilePic);
+    formData.append("title", title);
+    formData.append("location", location);
+    formData.append("about", about);
+    formData.append("skills", skills);
+
+    editBasicDetailsCall(user, formData, dispatch);
     setIsEditMode(false);
+    setEditProfilePicDisplay(false);
   };
 
   return (
@@ -39,7 +58,16 @@ const ProfileCenter = () => {
       <div className="ProfilepageCard">
       <div className="ProfilepageImages">
         <img className="profilepage-cover" src={Cover} alt="" />
-        <img src={ProfilePic} alt="" />
+        <div className="profilePic" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={() => profilePicRef.current.click()} >
+          <img src={profilePicPath} alt="" />
+          <div style={{display : `${editProfilePicDisplay ? "block" : "none"}`}} className="edit-profile-pic" >
+            <h5>Change Profile photo</h5>
+          </div>
+        </div>
+
+        <div style={{display : "none"}}>
+          <input type="file" name="profile-pic" accept=".png,.jpg,.jpeg" ref={profilePicRef} onChange={handleProfilePicChange} />
+        </div>
       </div>
       <div className="ProfilepageName">
         <span>{name}</span>
@@ -117,7 +145,7 @@ const ProfileCenter = () => {
             ))}
           </ul>
 
-          <button onClick={handleEditClick}><AiOutlineEdit/> Edit</button>
+          <button onClick={() => setIsEditMode(true)}><AiOutlineEdit/> Edit</button>
         </div>
       )}
     </div>

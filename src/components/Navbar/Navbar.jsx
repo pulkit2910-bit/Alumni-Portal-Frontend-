@@ -3,7 +3,6 @@ import "./Navbar.css";
 import axios from "axios";
 // icons
 import Logo from "../../../src/img/logo.png";
-import ProfilePic from "../../../src/img/img1.png";
 import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
 import { CiUser, CiLogout } from "react-icons/ci";
@@ -43,6 +42,7 @@ const DropdownItem = ({ item }) => {
 };
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const settings = useRef();
   const options = [
@@ -89,7 +89,7 @@ const Navbar = () => {
             onClick={() => setOpen(!open)}
             ref={settings}
           >
-            <img src={ProfilePic} alt="" />
+            <img src={user.avatar.url} alt="" />
             <div className={`Dropdown ${open ? "active" : "inactive"}`}>
               <ul>
                 {options.map((item, key) => {

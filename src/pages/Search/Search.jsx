@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Search.css"; // Import CSS file for styling
 import Navbar from "../../components/Navbar/Navbar";
-import Profilepicture from "../../img/img1.png";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function SearchPage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,6 +17,7 @@ function SearchPage() {
   });
   const [showFilters, setShowFilters] = useState(false);
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAllUsers = async () => {
@@ -27,6 +28,10 @@ function SearchPage() {
     };
     fetchAllUsers();
   }, [page]);
+
+  const handleClick = (profile) => {
+    navigate(`/view-profile/${profile._id}`);
+  }
 
   const handleToggleFilters = () => {
     setShowFilters(!showFilters);
@@ -128,10 +133,10 @@ function SearchPage() {
 
         <div className="results-container">
           {searchResults.length > 0 ? searchResults.map((profile) => (
-            <div key={profile.id} className="profile-card">
+            <div key={profile.id} className="profile-card" onClick={() => handleClick(profile)}>
               <div className="upperprofilecard">
                 <div className="profile-picture">
-                  <img src={Profilepicture} alt="Profile" />
+                  <img src={profile.avatar.url} alt="Profile" />
                 </div>
                 <hr />
                 <div className="profile-details">

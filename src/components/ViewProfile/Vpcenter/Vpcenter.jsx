@@ -1,7 +1,6 @@
 import React from "react";
 import '../../Profile/ProfileCenter/ProfileCenter.css'
 import Cover from "../../../../src/img/cover.jpg";
-import ProfilePic from "../../../../src/img/img1.png";
 
 const Vpcenter = ({ user }) => {
   let name = user.name;
@@ -16,7 +15,7 @@ const Vpcenter = ({ user }) => {
       <div className="ProfilepageCard">
       <div className="ProfilepageImages">
         <img className="profilepage-cover" src={Cover} alt="" />
-        <img src={ProfilePic} alt="" />
+        <img src={user.avatar.url} alt="" />
       </div>
       <div className="ProfilepageName">
         <span>{name}</span>
