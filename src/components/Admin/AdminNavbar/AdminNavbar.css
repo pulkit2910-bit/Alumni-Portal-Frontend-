@@ -1,0 +1,40 @@
+  .AdminNavbar {
+    margin: 0;
+    box-shadow: 0 2px 4px gray;
+    position: sticky;
+    z-index: 3;
+    padding: 0.5rem 1rem;
+  }
+  
+  .AdminNavbar-container {
+    margin: 0 5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+  }
+  
+  .AdminNavIcons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 1.5rem;
+  }
+  
+  .AdminNavIcons > div {
+    padding: 0.5rem;
+  }
+  
+  .AdminNavIcons > div:hover {
+    cursor: pointer;
+    background-color: rgb(217, 214, 214);
+  }
+  
+  .AdminLogo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .AdminLogo > img {
+    width: 3rem;
+    height: 3rem;
+  }

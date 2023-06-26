@@ -8,6 +8,9 @@ import Search from './pages/Search/Search';
 import ViewProfile from './pages/View profile/ViewProfile';
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext/AuthContext';
+import Admin from './pages/Admin/Admin';
+import AlumniSearch from './components/Admin/AlumniSearch/AlumniSearch';
+import AddEvents from './components/Admin/AddEvents/AddEvents';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -22,6 +25,9 @@ function App() {
           <Route exact path="/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
           <Route exact path="/search" element={user ? <Search /> : <Navigate to="/" /> } />
           <Route exact path="/view-profile/:userID" element={<ViewProfile/>} />
+          <Route exact path="/admin" element={<Admin/>}/>
+          <Route exact path="/admin/alumni-search" element={<AlumniSearch/>}/>
+          <Route exact path="/admin/add-events" element={<AddEvents/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-function SearchPage() {
+function SearchPage({isAdmin}) {
   const [searchQuery, setSearchQuery] = useState("");
   const [users, setUsers] = useState([]);
   const [searchResults, setSearchResults] = useState(users);
@@ -70,7 +70,7 @@ function SearchPage() {
 
   return (
     <>
-      <Navbar />
+      {!isAdmin && <Navbar />}
       <div className="search-page">
         <div className="search-container">
           <input
