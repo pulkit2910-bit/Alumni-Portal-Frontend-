@@ -11,23 +11,36 @@ import { AuthContext } from './Context/AuthContext/AuthContext';
 import Admin from './pages/Admin/Admin';
 import AlumniSearch from './components/Admin/AlumniSearch/AlumniSearch';
 import AddEvents from './components/Admin/AddEvents/AddEvents';
+import RequireAuth from './features/Auth/RequireAuth';
 
 function App() {
   const { user } = useContext(AuthContext);
+  let role;
+  if (user) role = user.role;
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={user ? <Home /> : <Login /> } />
-          <Route exact path="/login" element={user ? <Navigate to="/" /> : <Login /> } />
-          <Route exact path="/register" element={user ? <Navigate to="/profile" /> : <Register /> } />
-          <Route exact path="/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
-          <Route exact path="/search" element={user ? <Search /> : <Navigate to="/" /> } />
-          <Route exact path="/view-profile/:userID" element={<ViewProfile/>} />
-          <Route exact path="/admin" element={<Admin/>}/>
-          <Route exact path="/admin/alumni-search" element={<AlumniSearch/>}/>
-          <Route exact path="/admin/add-events" element={<AddEvents/>}/>
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/register" element={<Register /> } />
+
+          {role === "alumni" && <Route element={<RequireAuth allowedRole={"alumni"} />} >
+            <Route exact path="/alumni" element={user ? <Home /> : <Navigate to="/" /> } />
+            <Route exact path="/login" element={user ? <Navigate to="/alumni" /> : <Login /> } />
+            <Route exact path="/alumni/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
+            <Route exact path="/alumni/search" element={user ? <Search /> : <Navigate to="/" /> } />
+            <Route exact path="/view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
+          </Route>}
+          
+          {role === "admin" && <Route element={<RequireAuth allowedRole={"admin"} />} >
+            <Route exact path="/admin" element={user ? <Admin/> : <Navigate to="/" /> } />
+            <Route exact path="/login" element={user ? <Navigate to="/admin" /> : <Login /> } />
+            <Route exact path="/admin/alumni-search" element={<AlumniSearch/>} />
+            <Route exact path="/admin/add-events" element={<AddEvents/>} />
+            <Route exact path="/view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
+          </Route>}
+
         </Routes>
       </BrowserRouter>
     </div>

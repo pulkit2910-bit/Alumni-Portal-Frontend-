@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
 import "./Login.css";
 import logo from "../../img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginCall } from "../../apiCalls/auth";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 
@@ -9,6 +9,7 @@ const Login = () => {
   const email = useRef();
   const password = useRef();
   const { isFetching, error, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +21,7 @@ const Login = () => {
       alert(error.response.data.message); return;
     }
     alert("Login Success");
+    navigate("/login");
   }
 
   return (

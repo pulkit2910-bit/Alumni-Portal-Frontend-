@@ -2,6 +2,7 @@ import React, { useContext, useRef } from "react";
 import "./Register.css";
 import { registerCall } from "../../apiCalls/auth";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const Register = () => {
   const dob = useRef();
   const password = useRef();
   const re_password = useRef();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const Register = () => {
       "password" : password.current.value,
     }
     registerCall(userCredentials, dispatch);
+    navigate("/login");
   }
 
   return (

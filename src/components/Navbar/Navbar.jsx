@@ -23,11 +23,11 @@ const DropdownItem = ({ item }) => {
   const handleClick = (e) => {
     e.preventDefault();
     if (item.id === 0) {
-      navigate("/profile");
+      navigate("/alumni/profile");
     }
     else if (item.id === 1) {
       logout();
-      navigate("/login");      
+      navigate("/");      
     }
   };
 
@@ -68,7 +68,7 @@ const Navbar = () => {
         </div>
         <div className="navIcons">
           <div title="Home">
-          <Link to="/" >
+          <Link to="/alumni" >
             <GoHome />
             </Link>
           </div>
@@ -76,7 +76,7 @@ const Navbar = () => {
             <GoCalendar />
           </div>
           <div title="People"> 
-          <Link to="/search" >
+          <Link to="/alumni/search" >
             <SlPeople />
           </Link>
           </div>
