@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Search.css"; // Import CSS file for styling
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
+// import exportFromJSON from 'export-from-json'
+import * as XLSX from 'xlsx';
 import { useNavigate } from "react-router-dom";
+
+import { AiOutlineDownload } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
 
 function SearchPage({isAdmin}) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,6 +55,7 @@ function SearchPage({isAdmin}) {
       res.name?.toLowerCase().includes(searchQuery?.toLowerCase())
     );
     setSearchResults(newRes);
+    console.log(searchResults)
   };
 
   const handleApplyFilter = () => {
@@ -63,6 +69,20 @@ function SearchPage({isAdmin}) {
     });
     setSearchResults(filteredResults);
   };
+
+  // Alumni
+  const downloadCSV = () => {
+    const data = searchResults;
+    const filteredData = data.map((
+      { _id, name, rollNumber, role, email, altEmail, phoneNo, altPhoneNo, address, batch, degree, location, company, title, dob }) => ({
+        _id, name, rollNumber, role, email, altEmail, phoneNo, altPhoneNo, address, batch, degree, location, company, title, dob
+      }))
+
+    const worksheet = XLSX.utils.json_to_sheet(filteredData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    XLSX.writeFile(workbook, "DataSheet.xlsx");
+  }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -154,6 +174,17 @@ function SearchPage({isAdmin}) {
             </div>
           )) : "No Users Found"}
         </div>
+
+        {isAdmin && <footer className="AdminFooter">
+          {/* insert onclick backend codes here */}
+          <button onClick={() => downloadCSV()}>
+            Download  &nbsp; <AiOutlineDownload/>
+          </button>
+
+          <button>
+            Mail all  &nbsp; <AiOutlineMail/>
+          </button> 
+        </footer>}
       </div>
     </>
   );

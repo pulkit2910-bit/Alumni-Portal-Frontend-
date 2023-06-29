@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import "./Register.css";
 import { registerCall } from "../../apiCalls/auth";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Register = () => {
   const { isFetching, dispatch } = useContext(AuthContext);
@@ -13,9 +13,12 @@ const Register = () => {
   const password = useRef();
   const re_password = useRef();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const from = location.state?.from?.pathname || "/";
 
     if (password.current.value !== re_password.current.value) {
       alert("Re-entered password does not match");
@@ -30,7 +33,7 @@ const Register = () => {
       "password" : password.current.value,
     }
     registerCall(userCredentials, dispatch);
-    navigate("/login");
+    navigate(from, { replace: true });
   }
 
   return (
