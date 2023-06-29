@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Search.css"; // Import CSS file for styling
 import Navbar from "../../components/Navbar/Navbar";
 import axios from "axios";
-// import exportFromJSON from 'export-from-json'
 import * as XLSX from 'xlsx';
 import { useNavigate } from "react-router-dom";
 
