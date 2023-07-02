@@ -1,11 +1,24 @@
-import React, { useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./AddEvents.css"
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
+import { EventsContext } from '../../../Context/EventsContext/EventsContext';
+import { addEvent, deleteEvent } from '../../../apiCalls/event';
+import axios from 'axios';
 
 const AddEvents= () => {
     const [events, setEvents] = useState([]);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+
+    // const { events : currEvents, dispatch } = useContext(EventsContext);
+
+    useEffect(() => {
+      async function fetchEvents() {
+        const res = await axios.get('/events');
+        setEvents(res.data);
+      }
+      fetchEvents();
+    }, []);
   
     const handleTitleChange = (e) => {
       setTitle(e.target.value);
@@ -21,16 +34,26 @@ const AddEvents= () => {
         content,
         date: new Date().toLocaleDateString(),
       };
-  
+
+      const newAddEvent = {
+        title : title,
+        desc : content
+      }
+
+      // events.push(newAddEvent);
+      addEvent(newAddEvent);
+
       setEvents([...events, newEvent]);
       setTitle('');
       setContent('');
     };
   
-    const handleDeleteEvent = (index) => {
+    const handleDeleteEvent = (event, index) => {
       const updatedEvents = [...events];
       updatedEvents.splice(index, 1);
       setEvents(updatedEvents);
+      const eventID = event._id;
+      deleteEvent(eventID);
     };
   
     return (<>
@@ -59,10 +82,10 @@ const AddEvents= () => {
             <li className="event" key={index}>
               <h3 className="event-title">{event.title}</h3>
               <h4 className="event-date">{event.date}</h4>
-              <h4 className="event-content">{event.content}</h4>
+              <h4 className="event-content">{event.desc}</h4>
               <span
                 className="delete-button"
-                onClick={() => handleDeleteEvent(index)}
+                onClick={() => handleDeleteEvent(event, index)}
               >
                 Delete
               </span>
