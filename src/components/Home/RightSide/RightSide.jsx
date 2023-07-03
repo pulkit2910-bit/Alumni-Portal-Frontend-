@@ -25,7 +25,7 @@ const RightSide = () => {
         <div>
           <div>{event.title}</div>
           <div>{event.date}</div>
-          <div>{event.desc}</div>
+          <div>{event.content}</div>
         </div>
       ))}
     </div>
