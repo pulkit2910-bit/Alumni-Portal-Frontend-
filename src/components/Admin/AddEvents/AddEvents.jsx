@@ -29,19 +29,20 @@ const AddEvents= () => {
     };
   
     const handleAddEvent = () => {
+      const dt = new Date();
+      const d = dt.getDate();
+      const m = dt.getMonth();
+      const y = dt.getFullYear();
+      const date = `${d}/${m}/${y}`;
+
       const newEvent = {
         title,
         content,
-        date: new Date().toLocaleDateString(),
+        date,
       };
 
-      const newAddEvent = {
-        title : title,
-        desc : content
-      }
-
       // events.push(newAddEvent);
-      addEvent(newAddEvent);
+      addEvent(newEvent);
 
       setEvents([...events, newEvent]);
       setTitle('');
@@ -82,7 +83,7 @@ const AddEvents= () => {
             <li className="event" key={index}>
               <h3 className="event-title">{event.title}</h3>
               <h4 className="event-date">{event.date}</h4>
-              <h4 className="event-content">{event.desc}</h4>
+              <h4 className="event-content">{event.content}</h4>
               <span
                 className="delete-button"
                 onClick={() => handleDeleteEvent(event, index)}
