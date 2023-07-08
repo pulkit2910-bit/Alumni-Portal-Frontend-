@@ -25,7 +25,7 @@ function SearchPage({isAdmin}) {
 
   useEffect(() => {
     const fetchAllUsers = async () => {
-      const res = await axios.get(`/user/search?page=${page}`);
+      const res = await axios.get(`/alumni/search?page=${page}`);
       setUsers(res.data);
       setSearchResults(res.data);
       setLoading(false);

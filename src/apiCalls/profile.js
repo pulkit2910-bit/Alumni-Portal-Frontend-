@@ -3,7 +3,7 @@ import axios from "axios";
 const editEducationCall = async (user, details, dispatch) => {
     try {
         dispatch({ type : "UPDATE_USER_START", payload : user });
-        const res = await axios.put('/user/edit-profile/education', details);
+        const res = await axios.put('/alumni/edit-profile/education', details);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Education updated !");
@@ -16,7 +16,7 @@ const editEducationCall = async (user, details, dispatch) => {
 const editExperienceCall = async (user, details, dispatch) => {
     try {
         dispatch({ type : "UPDATE_USER_START", payload : user });
-        const res = await axios.put('/user/edit-profile/experience', details);
+        const res = await axios.put('/alumni/edit-profile/experience', details);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Experience updated !");
@@ -34,7 +34,7 @@ const editBasicDetailsCall = async (user, details, dispatch) => {
                 'content-type': 'multipart/form-data'
             }
         }
-        const res = await axios.put('/user/edit-profile', details, config);
+        const res = await axios.put('/alumni/edit-profile', details, config);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Details updated !");
@@ -47,7 +47,7 @@ const editBasicDetailsCall = async (user, details, dispatch) => {
 const editContactDetailsCall = async (user, details, dispatch) => {
     try {
         dispatch({ type : "UPDATE_USER_START", payload : user });
-        const res = await axios.put('/user/edit-profile/contact', details);
+        const res = await axios.put('/alumni/edit-profile/contact', details);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Contact Details updated !");
@@ -60,7 +60,7 @@ const editContactDetailsCall = async (user, details, dispatch) => {
 const editAchievements = async (user, details, dispatch) => {
     try {
         dispatch({ type : "UPDATE_USER_START", payload : user });
-        const res = await axios.put('/user/edit-profile/achievements', details);
+        const res = await axios.put('/alumni/edit-profile/achievements', details);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Contact Details updated !");
