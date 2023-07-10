@@ -14,7 +14,7 @@ const ViewProfile = () => {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`/alumni?userID=${userID}`);
+      const res = await axios.get(`/user?userID=${userID}`);
       // console.log(res);
       setUser(res.data);
       setLoading(false);

@@ -1,21 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Posts.css'
 import Post from "../Post/Post"
 import PostShare from "../PostShare/PostShare";
-import ProfileCard from '../ProfileCard/ProfileCard';
-import { useLocation } from 'react-router-dom';
+import { FeedContext } from '../../../Context/FeedContext/FeedContext';
 
 const Posts = () => {
-  const location = useLocation();
-  const isProfile = location.pathname === "/profile";
+  const { posts } = useContext(FeedContext);
 
   return (
     <div className='Posts'>
-      {!isProfile && <PostShare />}
-      {isProfile && <ProfileCard profile={isProfile} />}
-      <Post />
-      <Post />
-      <Post />
+      <PostShare />
+      {posts && 
+        posts.map((p, k) => {
+          return <Post post={p} key={k} />
+        })
+      }
     </div>
   )
 }

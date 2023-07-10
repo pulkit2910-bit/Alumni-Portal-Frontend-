@@ -1,4 +1,4 @@
-[
+const gpas = [
   {
     "rollNumber": "BTECH/10001/01",
     "semesters": [
@@ -3098,3 +3098,5 @@
     ]
   }
 ]
+
+export default gpas

@@ -20,11 +20,13 @@ const RightSide = () => {
   }
 
   return (
-    <div>
+    <div className='events-container'>
       {events.map((event, idx) => (
-        <div>
-          <div>{event.title}</div>
-          <div>{event.date}</div>
+        <div className='event-container'>
+          <div>
+            <div><b>{event.title}</b></div>
+            <div><b>{event.date}</b></div>
+          </div>
           <div>{event.content}</div>
         </div>
       ))}

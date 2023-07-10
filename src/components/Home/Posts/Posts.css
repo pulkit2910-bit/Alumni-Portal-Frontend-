@@ -6,4 +6,10 @@
     overflow: auto;
     padding: 0.5rem;
     width: 100%;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.Posts::-webkit-scrollbar {
+    display: none;
 }

@@ -1,0 +1,32 @@
+.events-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin: 0.75rem;
+  gap: 1.5rem;
+  height: fit-content;
+  position: relative;
+  overflow-x: clip;
+  overflow-y: auto;
+  background: rgba(251, 251, 251, 0.33);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.3px);
+  -webkit-backdrop-filter: blur(7.3px);
+  border: 1px solid rgba(253, 253, 253, 0.39);
+}
+
+.event-container {
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-container div:nth-of-type(1) {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-container div:nth-of-type(2) {
+    font-size: 1rem;
+}

@@ -1,93 +1,57 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Post.css";
-import PostImg from "../../../img/cover.jpg";
-import ProfilePic from "../../../img/img1.png";
+import TimeAgo from 'react-timeago';
 
 // icons
-import { GoKebabVertical } from "react-icons/go";
-import { MdDelete } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+import axios from "axios";
 
-const Post = ({profile}) => {
-  const [open, setOpen] = useState(false);
-  const options = [
-    { label: "Edit Post", icon: <CiEdit />, id: 0 },
-    { label: "Delete Post", icon: <MdDelete />, id: 1 },
-  ];
+const Post = ({post, profile}) => {
+  const { user: currentUser } = useContext(AuthContext);
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState({});
 
-  const DropdownItem = ({ item, postID }) => {
-    // const {posts, dispatch} = useContext(FeedContext);
-  
-    const handleClick = (e) => {
-      e.preventDefault();
-      // if (item.id === 0) {
-      //   // edit post
-      // } else if (item.id === 1) {
-      //   // delete post
-      //   deletePost(posts, postID, dispatch);
-      // }
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/user?userID=${post.userID}`);
+      setUser(res.data);
+      setLoading(false);
     };
-  
-    return (
-      <li className="dropdownItem" onClick={(e) => handleClick(e)}>
-        <p>
-          {item.icon}
-          {item.label}
-        </p>
-      </li>
-    );
-  };
+    fetchUser();
+    // console.log(user);
+  }, [currentUser._id, post]);
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
+
     <div className="Post">
-      <div className="postHeader">
-        <img src={ProfilePic} alt="" />
-        <span>
-          <b>Nishul</b>
-        </span>
-        {profile && (
-          <div className="menu" onClick={() => setOpen(!open)}>
-            <GoKebabVertical />
-            <div className={`postDropdown ${open ? "active" : "inactive"}`}>
-              <ul>
-                {options.map((item, key) => {
-                  return (
-                    <DropdownItem item={item} postID={1} key={key} />
-                    // <DropdownItem item={item} postID={post._id} key={key} />
-                  );
-                })}
-              </ul>
-            </div>
+      {user && (
+        <>
+          <div className="postHeader">
+            <img src={user.avatar.url} alt="" />
+            <span>
+              <b>{user.name}</b>
+            </span>
           </div>
-        )}
-      </div>
-
-      <hr />
-
-      {/* Add white bg div */}
-
-      <img src={PostImg} alt="" />
-
-      <hr />
-
-      {/* <div className="postReact">
-        <img onClick={likeHandler} src={isLiked ? Like : NotLike} alt="" />
-        <Link to={`/post/${post._id}`}>
-          <img src={Comment} alt="" />
-        </Link>
-        <img src={Share} alt="" />
-      </div> */}
-
-      {/* <span className="likes">{likes} likes</span> */}
-
-      <div className="details">
-        <span>Nishul</span>
-        <span>New Job alert</span>
-      </div>
-      <div className="postBottom">
-        {/* <TimeAgo date={post.createdAt} /> */}
-        1hr ago
-      </div>
+    
+          <hr />
+    
+          <img src={post.img.url} alt="" />
+    
+          <hr />
+    
+          <div className="details">
+            <span>{user.name}</span>
+            <span>{post.desc}</span>
+          </div>
+          <div className="postBottom">
+            <TimeAgo date={post.createdAt} />
+          </div>
+        </>
+      )}
     </div>
   );
 };

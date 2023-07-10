@@ -15,7 +15,9 @@ const Vpcenter = ({ user }) => {
       <div className="ProfilepageCard">
       <div className="ProfilepageImages">
         <img className="profilepage-cover" src={Cover} alt="" />
-        <img src={user.avatar.url} alt="" />
+        <div className="profilePic">
+          <img src={user.avatar.url} alt="" />
+        </div>
       </div>
       <div className="ProfilepageName">
         <span>{name}</span>

@@ -1,30 +1,29 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./ProfileCard.css";
 import Cover from "../../../../src/img/cover.jpg";
 import ProfilePic from "../../../../src/img/img1.png";
+import { AuthContext } from '../../../Context/AuthContext/AuthContext';
 
-const ProfileCard = ({ profile }) => {
+const ProfileCard = () => {
+  const { user } = useContext(AuthContext);
     
   return (
     <div className="ProfileCard">
       <div className="ProfileImages">
-        <img className={profile ? "profile-cover" : "home-cover"} src={Cover} alt="" />
-        <img src={ProfilePic} alt="" />
+        <img className="profile-cover" src={Cover} alt="" />
+        <img src={user.avatar.url} alt="" />
       </div>
 
       <div className="ProfileName">
-        <span>Nishul</span>
+        <span>{user.name}</span>
       </div>
 
       <hr />
 
       <div className='profileCard-options'>
-        <div>
-            Events
-        </div>
-        <div>
-            People
-        </div>
+        <div>{user.rollNumber}</div>
+        <div>{user.title}</div>
+        <div>{user.location}</div>
       </div>
 
     </div>
