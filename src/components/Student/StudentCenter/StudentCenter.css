@@ -1,0 +1,165 @@
+.student-profile-page {
+    padding: 0px 10px 0px 10px;
+      max-width: 100%;
+      height: calc(100vh - 20px);
+      overflow: auto;
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;
+    }
+  
+    .student-profile-page::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .student-profile-header {
+      margin-bottom: 20px;
+    }
+  
+    .student-edit-mode,
+    .student-view-mode
+    {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.5rem;
+      padding: 30px;
+      height: auto;
+      background: rgba(251, 251, 251, 0.33);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(7.3px);
+      -webkit-backdrop-filter: blur(7.3px);
+      border: 1px solid rgba(253, 253, 253, 0.39);
+    }
+
+    .student-edit-mode div,
+    .student-view-mode div {
+      margin-bottom: 20px;
+    }
+    
+    .student-edit-mode label,
+    .student-view-mode label {
+      display: block;
+      font-weight: bold;
+      color: #333333;
+    }
+    
+    .student-edit-mode input[type="text"],
+    .student-edit-mode textarea {
+      width: 97%;
+      padding: 10px;
+      border: 1px solid #d3dce6;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .student-edit-mode textarea {
+      resize: vertical;
+    }
+    
+    .student-edit-mode input[type="text"]:focus,
+    .student-edit-mode textarea:focus {
+      outline: none;
+      border-color: #0073b1;
+      box-shadow: 0 0 3px rgba(0, 115, 177, 0.3);
+    }
+    
+    .student-edit-mode button,
+    .student-view-mode button {
+      align-self: flex-end;
+      width: 100px;
+      background-color: #0073b1;
+      color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+    
+    .student-edit-mode button:hover,
+    .student-view-mode button:hover {
+      background-color: #005a8c;
+    }
+    
+  
+    
+    .student-view-mode p {
+      font-size: 14px;
+      color: #333333;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .student-view-mode ul {
+      margin-left: 20px;
+    }
+    
+    .student-view-mode li {
+      font-size: 14px;
+      color: #333333;
+      margin-bottom: 5px;
+    }
+  
+    .StudentProfilepageCard {
+      display: flex;
+      flex-direction: column;
+      border-radius: 1.5rem;
+      padding-bottom: 1rem;
+      margin-bottom: 16px;
+      height: auto;
+      position: relative;
+      overflow-x: clip;
+      background: rgba(251, 251, 251, 0.33);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(7.3px);
+      -webkit-backdrop-filter: blur(7.3px);
+      border: 1px solid rgba(253, 253, 253, 0.39);
+    }
+    
+    .StudentProfilepageImages {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .student-profilepage-cover {
+      width: 100%;
+      max-height: 16rem;
+      object-fit: cover;
+    }
+    
+    .StudentProfilepageImages > img:nth-of-type(2) {
+      position: absolute;
+      object-fit: cover;
+      height: 9rem;
+      width: 9rem;
+      border-radius: 50%;
+      bottom: -3rem;
+      box-sizing: var(--profileShadow);
+    }
+    
+    .StudentProfilepageName {
+      display: flex;
+      flex-direction: column;
+      font-size: large;
+      margin-top: 3.5rem;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+    }
+    
+    .StudentProfilepageName > span:nth-of-type(1) {
+      font-weight: bold;
+    }
+    
+    .student-profilepageCard-options {
+      font-size: medium;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;  
+      align-items: center;
+      justify-content: center;
+      gap: 3px
+    }
+  

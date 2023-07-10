@@ -1,0 +1,120 @@
+#containsstudentlefteditprofile{
+    height: 100vh;
+    width: auto;
+    overflow-x:auto;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+  .student-edit-mode-left,
+  .student-view-mode-left
+  {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    padding: 30px;
+    margin-bottom: 30px;
+    height: auto;
+    background: rgba(251, 251, 251, 0.33);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.3px);
+    -webkit-backdrop-filter: blur(7.3px);
+    border: 1px solid rgba(253, 253, 253, 0.39);
+  }
+  
+  .student-edit-mode-left label,
+  .student-view-mode-left label {
+    display: block;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .student-edit-mode-left input[type="text"],
+  .student-edit-mode-left textarea{
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #d3dce6;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  .student-edit-mode-left textarea{
+    resize: vertical;
+    scroll-behavior: auto;
+    height: 36px;
+  }
+
+  .student-edit-mode-left input[type="text"]:focus,
+  .student-edit-mode-left input[type="textarea"]:focus{
+    outline: none;
+    border-color: #0073b1;
+    box-shadow: 0 0 3px rgba(0, 115, 177, 0.3);
+  }
+    
+.student-edit-mode-left div:not(:last-child){
+    margin-top: 20px;
+      }
+  
+.proresbutton {
+    width: fit-content;
+    margin-top: 9px;
+    background-color: #0073b1;
+    color: #ffffff;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+  
+.proresbutton:hover{
+    background-color: #005a8c;
+  }
+
+  .student-view-mode-left p {
+    margin-left: 20px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: 13px;
+    color: #333333;
+    line-height: 1.5;
+  }
+  
+  .student-view-mode-left ul {
+    margin-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 3px
+  }
+  
+  .student-view-mode-left h4 {
+    margin-top:9px;
+    margin-bottom: 9px;
+  }
+  
+  .student-view-mode-left h5 {
+    margin: 6px;
+    font-size: 14px;
+  }
+  
+  .student-view-mode-left li {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  .student-view-mode-left hr {
+    margin-bottom: 24px;
+    margin-top: 24px;
+    width: 85%;
+    border: 1px solid var(--hrColor);
+    background-color: var(--hrColor);
+  }
+  .buttonatend{
+    display: flex;
+    justify-content:space-between;
+  }
+
+  .buttonatend2{
+    display: flex;
+    justify-content:flex-end;
+  }

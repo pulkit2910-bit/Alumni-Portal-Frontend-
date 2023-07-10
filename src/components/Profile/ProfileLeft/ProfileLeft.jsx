@@ -149,7 +149,7 @@ let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
       <div>
           {isEditLeft2Mode ? (
             <div className="edit-mode-left">
-              <label htmlFor="education">Experience :</label>
+              <label htmlFor="experience">Experience :</label>
               {experience.map((exp, index) => (
                 <div key={index}>
                   <input
