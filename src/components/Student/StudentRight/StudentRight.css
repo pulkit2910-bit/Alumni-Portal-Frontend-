@@ -1,0 +1,143 @@
+#studentcontainerighteditprofile{
+    height: 100vh;
+    width: auto;
+    overflow-y:auto;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+  .student-edit-mode-right,
+  .student-view-mode-right {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.5rem;
+    padding: 30px;
+    margin-bottom: 30px;
+    height: auto;
+    background: rgba(251, 251, 251, 0.33);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(7.3px);
+    -webkit-backdrop-filter: blur(7.3px);
+    border: 1px solid rgba(253, 253, 253, 0.39);
+  }
+  
+  .student-edit-mode-right div:not(.socminputbox):not(.socminputbox>div),
+  .student-view-mode-right div {
+    margin-bottom: 20px;
+  }
+  
+  .student-edit-mode-right label,
+  .student-view-mode-right label {
+    display: block;
+    font-weight: bold;
+    color: #333333;
+  }
+  
+  .student-edit-mode-right input[type="text"],
+  .student-edit-mode-right input[type="number"]{
+    width: 97%;
+    padding: 10px;
+    border: 1px solid #d3dce6;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .student-edit-mode-right textarea {
+    width: 97%;
+    height: 4rem;
+    padding: 10px;
+    border: 1px solid #d3dce6;
+    border-radius: 4px;
+    font-size: 14px;
+    resize: vertical;
+  }
+  
+  .student-edit-mode-right input[type="number"]::-webkit-outer-spin-button,
+  .student-edit-mode-right input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+  
+  .student-edit-mode-right input[type="text"]:focus,
+  .student-edit-mode-right textarea:focus {
+    outline: none;
+    border-color: #0073b1;
+    box-shadow: 0 0 3px rgba(0, 115, 177, 0.3);
+  }
+  
+  .student-edit-mode-right button,
+  .student-view-mode-right button {
+    width: fit-content;
+    align-self: flex-end;
+    background-color: #0073b1;
+    color: #ffffff;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .student-edit-mode-right button:hover,
+  .student-view-mode-right button:hover {
+    background-color: #005a8c;
+  }
+  
+  
+  
+  .student-view-mode-right p {
+    margin-left: 20px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    font-size: 14px;
+    color: #333333;
+    line-height: 1.5;
+  }
+  
+  .student-view-mode-right ul {
+    margin-left: 20px;
+    margin-top: 3px;
+    margin-bottom: 3px
+  }
+  
+  .student-view-mode-right h4 {
+    margin-top:9px;
+    margin-bottom: 9px;
+  }
+  
+  .student-view-mode-right li {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+  }
+  
+  .student-view-mode-right hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 85%;
+    border: 1px solid var(--hrColor);
+    background-color: var(--hrColor);
+  }
+  
+  #student-socmheading{
+    margin-bottom: 6px;
+  }
+  
+  .student-socminputbox button{
+    margin-top:9px;
+  }
+  
+  .student-socminputbox>div:not(:last-child):not(:nth-last-child(2)){
+    margin-bottom:10px;
+  }
+  
+  .student-view-mode-right h5 {
+    margin: 6px;
+    font-size: 14px;
+  }
+
+  .student-view-mode-right div {
+    margin-bottom: 0px;
+  }

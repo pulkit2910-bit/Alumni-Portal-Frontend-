@@ -13,8 +13,8 @@ import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext/AuthContext';
 import Admin from './pages/Admin/Admin';
 import AlumniSearch from './components/Admin/AlumniSearch/AlumniSearch';
-import EditProfile from './components/Student/EditProfile/EditProfile'
-import Academic from './components/Student/Academic/Academic'
+// import EditProfile from './components/Student/EditProfile/EditProfile'
+// import Academic from './components/Student/Academic/Academic'
 import Placement from './components/Student/Placement/Placement'
 import AddEvents from './components/Admin/AddEvents/AddEvents';
 import RequireAuth from './features/Auth/RequireAuth';
@@ -50,8 +50,8 @@ function App() {
 
             {/* <Route element={<RequireAuth allowedRole={"current_student"} />} > */}
               <Route path='student' element={<Student />} />
-              <Route path='student/profile' element={<EditProfile />} />
-              <Route path='student/academic' element={<Academic />} />
+              {/* <Route path='student/profile' element={<EditProfile />} />
+              <Route path='student/academic' element={<Academic />} /> */}
             {/* </Route> */}
 
             {/* <Route element={<RequireAuth allowedRole={"outgoing_student"} />} > */}
