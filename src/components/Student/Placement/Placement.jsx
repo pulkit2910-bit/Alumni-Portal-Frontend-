@@ -8,22 +8,18 @@ const Placement = () => {
 //for offers
 
     let [JobOffers, setJobOffers] = useState([
-      { Company: '', Role: '', CTC: '', OfferType: '', SupportingDocument: null },
+      { Company: '', Role: '', CTC: '', Type: 'On-Campus', SupportingLink: '' },
     ]);
     let [isEditPlacementMode1, setIsEditPlacementMode1] = useState(false);
 
     const handleJobOffersChange = (e, index, field) => {
       const updatedJobOffers = [...JobOffers];
-      if (field === "SupportingDocument") {
-        const file = e.target.files[0];
-        updatedJobOffers[index].SupportingDocument = file;
-      }
-      else updatedJobOffers[index][field] = e.target.value;
+      updatedJobOffers[index][field] = e.target.value;
       setJobOffers(updatedJobOffers);
     };
 
     const addJobOffers = () => {
-      setJobOffers([...JobOffers, { Company: '', Role: '', CTC: '', OfferType: '', SupportingDocument: null }]);
+      setJobOffers([...JobOffers, { Company: '', Role: '', CTC: '', Type: 'On-Campus', SupportingLink: '' }]);
     };
 
     const deleteJobOffers = (index) => {
@@ -45,22 +41,18 @@ const Placement = () => {
 //for experiences
 
     let [StudentExperiences, setStudentExperiences] = useState([
-      { Company: '', Role: '', StartDate: '', EndDate: '', Description:'', SupportingDocument: null },
+      { Company: '', Role: '', StartDate: '', EndDate: '', Description:'', SupportingLink: '' },
     ]);
     let [isEditPlacementMode2, setIsEditPlacementMode2] = useState(false);
 
     const handleStudentExperiencesChange = (e, index, field) => {
       const updatedStudentExperiences = [...StudentExperiences];
-      if (field === "SupportingDocument") {
-        const file = e.target.files[0];
-        updatedStudentExperiences[index].SupportingDocument = file;
-      }
-      else updatedStudentExperiences[index][field] = e.target.value;
+      updatedStudentExperiences[index][field] = e.target.value;
       setStudentExperiences(updatedStudentExperiences);
     };
 
     const addStudentExperiences = () => {
-      setStudentExperiences([...StudentExperiences, { Company: '', Role: '', StartDate: '', EndDate: '', Description:'', SupportingDocument: null }]);
+      setStudentExperiences([...StudentExperiences, { Company: '', Role: '', StartDate: '', EndDate: '', Description:'', SupportingLink: '' }]);
     };
 
     const deleteStudentExperiences = (index) => {
@@ -82,22 +74,18 @@ const Placement = () => {
 //for cracked exams
 
     let [AppearedExams, setAppearedExams] = useState([
-      { ExamName: '', Result: '', Description: '', SupportingDocument: null },
+      { ExamName: '', Result: '', Description: '', SupportingLink: '' },
     ]);
     let [isEditPlacementMode3, setIsEditPlacementMode3] = useState(false);
 
     const handleAppearedExamsChange = (e, index, field) => {
       const updatedAppearedExams = [...AppearedExams];
-      if (field === "SupportingDocument") {
-        const file = e.target.files[0];
-        updatedAppearedExams[index].SupportingDocument = file;
-      }
-      else updatedAppearedExams[index][field] = e.target.value;
+      updatedAppearedExams[index][field] = e.target.value;
       setAppearedExams(updatedAppearedExams);
     };
 
     const addAppearedExams = () => {
-      setAppearedExams([...AppearedExams, { ExamName: '', Result: '', Description: '', SupportingDocument: null}]);
+      setAppearedExams([...AppearedExams, { ExamName: '', Result: '', Description: '', SupportingLink: ''}]);
     };
 
     const deleteAppearedExams = (index) => {
@@ -119,22 +107,18 @@ const Placement = () => {
 //for higher education
 
     let [StudentHigherStudies, setStudentHigherStudies] = useState([
-      { Institution: '', Degree: '', Description: '', SupportingDocument: null },
+      { Institution: '', Degree: '', Description: '', SupportingLink: '' },
     ]);
     let [isEditPlacementMode4, setIsEditPlacementMode4] = useState(false);
 
     const handleStudentHigherStudiesChange = (e, index, field) => {
       const updatedStudentHigherStudies = [...StudentHigherStudies];
-      if (field === "SupportingDocument") {
-        const file = e.target.files[0];
-        updatedStudentHigherStudies[index].SupportingDocument = file;
-      }
-      else updatedStudentHigherStudies[index][field] = e.target.value;
+      updatedStudentHigherStudies[index][field] = e.target.value;
       setStudentHigherStudies(updatedStudentHigherStudies);
     };
 
     const addStudentHigherStudies = () => {
-      setStudentHigherStudies([...StudentHigherStudies, { Institution: '', Degree: '', Description: '', SupportingDocument: null }]);
+      setStudentHigherStudies([...StudentHigherStudies, { Institution: '', Degree: '', Description: '', SupportingLink: '' }]);
     };
 
     const deleteStudentHigherStudies = (index) => {
@@ -191,24 +175,18 @@ const Placement = () => {
                   onChange={(e) => handleJobOffersChange(e, index, 'CTC')}
                   style={{ marginBottom: "5px", width: "75%" }}
                 />
-                <select value={joboffer.Type} defaultValue={"On-Campus"} onChange={(e) => handleJobOffersChange(e, index, 'Type')} style={{ marginBottom: "5px",width: "21%" }}>
-                  <option value="On-Campus">On-Campus</option>
-                  <option value="Off-Campus">Off-Campus</option>
+                <select value={joboffer.Type} onChange={(e) => handleJobOffersChange(e, index, 'Type')} style={{ marginBottom: "5px",width: "21%" }}>
+                  <option value='On-Campus'>On-Campus</option>
+                  <option value='Off-Campus'>Off-Campus</option>
                 </select>  
-                Supporting Document: <input
-                  type="file"
-                  placeholder="Supporting Document"
+                <input
+                  type="text"
+                  placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
+                  value={joboffer.SupportingLink}
                   onChange={(e) =>
-                    handleJobOffersChange(e, index, 'SupportingDocument')
+                    handleJobOffersChange(e, index, 'SupportingLink')
                   }
-                />
-                <>
-                  {joboffer.SupportingDocument && <span style={{ marginLeft: '8px' }}>Selected file:
-                    <a href={URL.createObjectURL(joboffer.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>
-                  </span>}
-                </>
+                /> 
                 {index !== 0 && (
                   <button className="placementbutton" onClick={() => deleteJobOffers(index)}>Delete</button>
                 )}
@@ -227,12 +205,12 @@ const Placement = () => {
                 {joboffer.Company ? (<>
                   <h5>{joboffer.Company}</h5>
                   <p>{joboffer.Role}</p>
-                  <p>CTC: &#8377;{joboffer.CTC}</p>
+                  {joboffer.CTC && <p> CTC: &#8377;{joboffer.CTC }</p>}
                   <p>{joboffer.Type}</p>
-                  <p>{joboffer.SupportingDocument ? (
-                    <a href={URL.createObjectURL(joboffer.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>) : (<em>Supporting Document N/A</em>)
+                  <p>{joboffer.SupportingLink ? (
+                    <a href={(joboffer.SupportingLink)} target="_blank">
+                      View Document &#x1F517;
+                    </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
                   {index === (JobOffers.length - 1) ? null : JobOffers[index + 1].Company === '' ? null : (<hr />)}
@@ -290,20 +268,14 @@ const Placement = () => {
                   value={exp.Description}
                   onChange={(e) => handleStudentExperiencesChange(e, index, 'Description')}
                 />
-                Supporting Document: <input
-                  type="file"
-                  placeholder="Supporting Document"
+                <input
+                  type="text"
+                  placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
+                  value={exp.SupportingLink}
                   onChange={(e) =>
-                    handleStudentExperiencesChange(e, index, 'SupportingDocument')
+                    handleStudentExperiencesChange(e, index, 'SupportingLink')
                   }
                 />
-                <>
-                  {exp.SupportingDocument && <span style={{ marginLeft: '8px' }}>Selected file:
-                    <a href={URL.createObjectURL(exp.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>
-                  </span>}
-                </>
                 {index !== 0 && (
                   <button className="placementbutton" onClick={() => deleteStudentExperiences(index)}>Delete</button>
                 )}
@@ -324,10 +296,10 @@ const Placement = () => {
                   <p>{exp.Role}</p>
                   <p>{formatDate(exp.StartDate)} {exp.EndDate?(<> - {formatDate(exp.EndDate)}</>):(<> - present</>)}</p>              
                   <p>{exp.Description}</p>
-                  <p>{exp.SupportingDocument ? (
-                    <a href={URL.createObjectURL(exp.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>) : (<em>Supporting Document N/A</em>)
+                  <p>{exp.SupportingLink ? (
+                    <a href={(exp.SupportingLink)} target="_blank">
+                      View Document &#x1F517;
+                    </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
                   {index === (StudentExperiences.length - 1) ? null : StudentExperiences[index + 1].Company === '' ? null : (<hr />)}
@@ -367,20 +339,14 @@ const Placement = () => {
                   value={exam.Description}
                   onChange={(e) => handleAppearedExamsChange(e, index, 'Description')}
                 />
-                Supporting Document: <input
-                  type="file"
-                  placeholder="Supporting Document"
+                <input
+                  type="text"
+                  placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
+                  value={exam.SupportingLink}
                   onChange={(e) =>
-                    handleAppearedExamsChange(e, index, 'SupportingDocument')
+                    handleAppearedExamsChange(e, index, 'SupportingLink')
                   }
                 />
-                <>
-                  {exam.SupportingDocument && <span style={{ marginLeft: '8px' }}>Selected file:
-                    <a href={URL.createObjectURL(exam.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>
-                  </span>}
-                </>
                 {index !== 0 && (
                   <button className="placementbutton" onClick={() => deleteAppearedExams(index)}>Delete</button>
                 )}
@@ -400,10 +366,10 @@ const Placement = () => {
                   <h5>{exam.ExamName}</h5>
                   <p>{exam.Result}</p>
                   <p>{exam.Description}</p>
-                  <p>{exam.SupportingDocument ? (
-                    <a href={URL.createObjectURL(exam.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>) : (<em>Supporting Document N/A</em>)
+                  <p>{exam.SupportingLink ? (
+                    <a href={(exam.SupportingLink)} target="_blank">
+                      View Document &#x1F517;
+                    </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
                   {index === (AppearedExams.length - 1) ? null :AppearedExams[index + 1].ExamName === '' ? null : (<hr />)}
@@ -443,20 +409,14 @@ const Placement = () => {
                   value={hstudy.Description}
                   onChange={(e) => handleStudentHigherStudiesChange(e, index, 'Description')}
                 />
-                Supporting Document: <input
-                  type="file"
-                  placeholder="Supporting Document"
+                <input
+                  type="text"
+                  placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
+                  value={hstudy.SupportingLink}
                   onChange={(e) =>
-                    handleStudentHigherStudiesChange(e, index, 'SupportingDocument')
+                    handleStudentHigherStudiesChange(e, index, 'SupportingLink')
                   }
                 />
-                <>
-                  {hstudy.SupportingDocument && <span style={{ marginLeft: '8px' }}>Selected file:
-                    <a href={URL.createObjectURL(hstudy.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>
-                  </span>}
-                </>
                 {index !== 0 && (
                   <button className="placementbutton" onClick={() => deleteStudentHigherStudies(index)}>Delete</button>
                 )}
@@ -476,10 +436,10 @@ const Placement = () => {
                   <h5>{hstudy.Institution}</h5>
                   <p>{hstudy.Degree}</p>
                   <p>{hstudy.Description}</p>
-                  <p>{hstudy.SupportingDocument ? (
-                    <a href={URL.createObjectURL(hstudy.SupportingDocument)} target="_blank">
-                      View Document
-                    </a>) : (<em>Supporting Document N/A</em>)
+                  <p>{hstudy.SupportingLink ? (
+                    <a href={(hstudy.SupportingLink)} target="_blank">
+                      View Document &#x1F517;
+                    </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
                   {index === (StudentHigherStudies.length - 1) ? null : StudentHigherStudies[index + 1].Institution === '' ? null : (<hr />)}

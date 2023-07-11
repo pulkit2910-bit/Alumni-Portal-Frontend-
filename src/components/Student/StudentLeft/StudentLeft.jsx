@@ -16,16 +16,12 @@ let [isEditLeftMode, setIsEditLeftMode] = useState(false);
 
 const handleProjectResearchChange = (e, index, field) => {
   const updatedProjectResearch = [...ProjectResearch];
-  if (field === "SupportingDocument") {
-    const file = e.target.files[0];
-    updatedProjectResearch[index].SupportingDocument = file;
-  }
-  else updatedProjectResearch[index][field] = e.target.value;
+  updatedProjectResearch[index][field] = e.target.value;
   setProjectResearch(updatedProjectResearch);
 };
 
 const addProjectResearch = () => {
-  setProjectResearch([...ProjectResearch, { Title: '', Description: '', SupportingLink: '', SupportingDocument: null }]);
+  setProjectResearch([...ProjectResearch, { Title: '', Description: '', SupportingLink: '' }]);
 };
 
 const deleteProjectResearch = (index) => {
@@ -45,7 +41,7 @@ const handleLeftSaveClick = () => {
 
 //for ExtraCurriculars edit button
 
-const [ExtraCurricular, setExtraCurricular] = useState([  { Title: '', Description: '', SupportingLink: '', SupportingDocument: '' },]); //it's an array of objects
+const [ExtraCurricular, setExtraCurricular] = useState([  { Title: '', Description: '', SupportingLink: ''},]); //it's an array of objects
 let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
 
 const handleLeft2EditClick = () => {
@@ -58,11 +54,7 @@ const handleLeft2SaveClick = () => {
 
 const handleExtraCurricularChange = (e, index, field) => {
   const updatedExtraCurricular = [...ExtraCurricular];
-  if (field === "SupportingDocument") {
-    const file = e.target.files[0];
-    updatedExtraCurricular[index].SupportingDocument = file;
-  }
-  else updatedExtraCurricular[index][field] = e.target.value;
+  updatedExtraCurricular[index][field] = e.target.value;
   setExtraCurricular(updatedExtraCurricular);
 };
 
@@ -98,25 +90,11 @@ return (
             />
             <input
               type="text"
-              placeholder="Supporting Link"
+              placeholder="Upload link of your Project/Research"
               value={prores.SupportingLink}
               onChange={(e) => handleProjectResearchChange(e, index, 'SupportingLink')} 
               style={{ marginBottom: "5px"}}           
             />
-            Supporting Document: <input
-                type="file"
-                placeholder="Supporting Document"
-                onChange={(e) =>
-                  handleProjectResearchChange(e, index, 'SupportingDocument')
-                }
-            />
-            <>
-            {prores.SupportingDocument && <span style={{marginLeft:'8px'}}>Selected file:
-              <a href={URL.createObjectURL(prores.SupportingDocument)} target="_blank">
-                  View Document
-              </a>
-              </span>}
-            </>
             {index !== 0 && (
               <button className="proresbutton" onClick={() => deleteProjectResearch(index)}>Delete</button>
             )}
@@ -135,16 +113,10 @@ return (
           { prores.Title?(<>
           <h5>{prores.Title}</h5>
           <p>{prores.Description}</p>
-          <p>{prores.SupportingDocument?(
-              <a href={URL.createObjectURL(prores.SupportingDocument)} target="_blank">
-                  View Document
-              </a>):(<em>Supporting Document N/A</em>)
-              }
-          </p>
           <p>{prores.SupportingLink?(
               <a href={(prores.SupportingLink)} target="_blank">
                    Link &#x1F517;
-              </a>):(<em>Supporting Link N/A</em>)
+              </a>):(<em>Validating Link N/A</em>)
               }
           </p>
           {index===(ProjectResearch.length-1)?null:ProjectResearch[index+1].Title===''?null:(<hr/>)}
@@ -179,25 +151,10 @@ return (
                 />
                 <input
                   type="text"
-                  placeholder="Supporting Link"
+                  placeholder="Upload G-drive link of Validating Document"
                   value={extcur.SupportingLink}
                   onChange={(e) => handleExtraCurricularChange(e, index, 'SupportingLink')}            
                 />
-                Supporting Document: <input
-                    type="file"
-                    placeholder="Supporting Document"
-                    onChange={(e) =>
-                      handleExtraCurricularChange(e, index, 'SupportingDocument')
-                    }
-                />
-                <>
-                {extcur.SupportingDocument && <span style={{marginLeft:'8px'}}>Selected file:
-                  <a href={URL.createObjectURL(extcur.SupportingDocument)} target="_blank">
-                      View Document
-                  </a>
-                  </span>
-                }
-                </>
                 {index !== 0 && (
                   <button className="proresbutton" onClick={() => deleteExtraCurricular(index)}>Delete</button>
                 )}
@@ -216,16 +173,10 @@ return (
                 { extcur.Title?(<>
                 <h5>{extcur.Title}</h5>
                 <p>{extcur.Description}</p>
-                <p>{extcur.SupportingDocument?(
-                    <a href={URL.createObjectURL(extcur.SupportingDocument)} target="_blank">
-                        View Document
-                    </a>):(<em>Supporting Document N/A</em>)
-                    }
-                </p>
-                <p>{extcur.SupportingDocument?(
+                <p>{extcur.SupportingLink?(
                     <a href={(extcur.SupportingLink)} target="_blank">
-                        Link &#x1F517;
-                    </a>):(<em>Supporting Link N/A</em>)
+                        View Document &#x1F517;
+                    </a>):(<em>Validating Document N/A</em>)
                     }
                 </p>
                 {index===(ExtraCurricular.length-1)?null:ExtraCurricular[index+1].Title===''?null:(<hr/>)}
