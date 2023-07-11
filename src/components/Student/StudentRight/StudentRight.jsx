@@ -177,7 +177,7 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
     <div>
     {isEditRight2Mode ? (
         <div className="student-edit-mode-right">
-          <div>
+          <div  id='achievementsdiv'>
           <label htmlFor="achievements">Achievements :</label>
               {Achievements.map((achievement, index) => (
               <div key={index}>
@@ -215,15 +215,16 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                   </span>}
                 </>
                 {index !== 0 && (
-                  <button className="studentsocmbutton" onClick={() => deleteAchievements(index)}>Delete</button>
+                  <button className="studentsocmbutton" style={{marginTop:"5px"}} onClick={() => deleteAchievements(index)}>Delete</button>
                 )}
               </div>
             ))}
-            <div>
+            <div id="achievementsbuttonbox">
             <button className="studentsocmbutton" onClick={addAchievements}>Add</button>
+            <button onClick={handleRight2SaveClick}><AiOutlineSave/></button>
+            </div>
           </div>
-          </div>
-          <button onClick={handleRight2SaveClick}><AiOutlineSave/></button>
+
         </div>
       ) : (
         <div className="student-view-mode-right">
@@ -236,13 +237,13 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                 <p>{Achievement.SupportingDocument?(
                     <a href={URL.createObjectURL(Achievement.SupportingDocument)} target="_blank">
                         View Document
-                    </a>):(<>N/A</>)
+                    </a>):(<em>Supporting Document N/A</em>)
                     }
                 </p>
                 <p>{Achievement.SupportingLink?(
                     <a href={(Achievement.SupportingLink)} target="_blank">
                         Link &#x1F517;
-                    </a>):(<>N/A</>)
+                    </a>):(<em>Supporting Link N/A</em>)
                     }
                 </p>
                 {index===(Achievements.length-1)?null:Achievements[index+1].Title===''?null:(<hr/>)}
@@ -251,7 +252,7 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                 (Achievement.Title='')}
                 </div>
          ))}
-         <div>
+         <div style={{display:'flex',justifyContent:'flex-end'}}>
           <button onClick={handleRight2EditClick}><AiOutlineEdit/></button>
           </div>
         </div>
