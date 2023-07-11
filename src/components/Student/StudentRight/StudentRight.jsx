@@ -54,16 +54,12 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
 
   const handleAchievementsChange = (e, index, field) => {
   const updatedAchievements = [...Achievements];
-    if (field === "SupportingDocument") {
-      const file = e.target.files[0];
-      updatedAchievements[index].SupportingDocument = file;
-    }
-    else updatedAchievements[index][field] = e.target.value;
-    setAchievements(updatedAchievements);
+  updatedAchievements[index][field] = e.target.value;
+  setAchievements(updatedAchievements);
   };
 
   const addAchievements = () => {
-    setAchievements([...Achievements, { Title: '', Description: '', SupportingLink: '', SupportingDocument: null }]);
+    setAchievements([...Achievements, { Title: '', Description: '', SupportingLink: ''}]);
   };
 
   const deleteAchievements = (index) => {
@@ -195,25 +191,11 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                 />
                 <input
                   type="text"
-                  placeholder="Supporting Link"
+                  placeholder="Upload G-drive link of Validating Document"
                   value={achievement.SupportingLink}
                   onChange={(e) => handleAchievementsChange(e, index, 'SupportingLink')} 
                   style={{ marginBottom: "5px"}}           
                 />
-                Supporting Document: <input
-                    type="file"
-                    placeholder="Supporting Document"
-                    onChange={(e) =>
-                      handleAchievementsChange(e, index, 'SupportingDocument')
-                    }
-                />
-                <>
-                {achievement.SupportingDocument && <span style={{marginLeft:'8px'}}>Selected file:
-                  <a href={URL.createObjectURL(achievement.SupportingDocument)} target="_blank">
-                      View Document
-                  </a>
-                  </span>}
-                </>
                 {index !== 0 && (
                   <button className="studentsocmbutton" style={{marginTop:"5px"}} onClick={() => deleteAchievements(index)}>Delete</button>
                 )}
@@ -234,16 +216,10 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                 { Achievement.Title?(<>
                 <h5>{Achievement.Title}</h5>
                 <p>{Achievement.Description}</p>
-                <p>{Achievement.SupportingDocument?(
-                    <a href={URL.createObjectURL(Achievement.SupportingDocument)} target="_blank">
-                        View Document
-                    </a>):(<em>Supporting Document N/A</em>)
-                    }
-                </p>
                 <p>{Achievement.SupportingLink?(
                     <a href={(Achievement.SupportingLink)} target="_blank">
-                        Link &#x1F517;
-                    </a>):(<em>Supporting Link N/A</em>)
+                        View Document &#x1F517;
+                    </a>):(<em>Validating Document N/A</em>)
                     }
                 </p>
                 {index===(Achievements.length-1)?null:Achievements[index+1].Title===''?null:(<hr/>)}
