@@ -2,16 +2,14 @@ import React, {useState} from 'react'
 import './StudentLeft.css'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
-import { upload } from '@testing-library/user-event/dist/upload';
+import { updateCurricularActivities, updateProject } from '../../../apiCalls/current_student';
 
-const StudentLeft = () => {
+const StudentLeft = ({ user }) => {
 
 
 //for research and projects edit button
 
-let [ProjectResearch, setProjectResearch] = useState([
-  { Title: '', Description: '', SupportingLink: '', SupportingDocument: null },
-]);
+let [ProjectResearch, setProjectResearch] = useState(user.student_projects);
 let [isEditLeftMode, setIsEditLeftMode] = useState(false);
 
 const handleProjectResearchChange = (e, index, field) => {
@@ -21,7 +19,7 @@ const handleProjectResearchChange = (e, index, field) => {
 };
 
 const addProjectResearch = () => {
-  setProjectResearch([...ProjectResearch, { Title: '', Description: '', SupportingLink: '' }]);
+  setProjectResearch([...ProjectResearch, { title: '', desc: '', link: '' }]);
 };
 
 const deleteProjectResearch = (index) => {
@@ -35,13 +33,14 @@ const handleLeftEditClick = () => {
 };
 
 const handleLeftSaveClick = () => {
+  updateProject(ProjectResearch);
   setIsEditLeftMode(false);
 };
 
 
 //for ExtraCurriculars edit button
 
-const [ExtraCurricular, setExtraCurricular] = useState([  { Title: '', Description: '', SupportingLink: ''},]); //it's an array of objects
+const [ExtraCurricular, setExtraCurricular] = useState(user.student_activities); //it's an array of objects
 let [isEditLeft2Mode, setIsEditLeft2Mode] = useState(false);
 
 const handleLeft2EditClick = () => {
@@ -49,6 +48,7 @@ const handleLeft2EditClick = () => {
 };
 
 const handleLeft2SaveClick = () => {
+  updateCurricularActivities(ExtraCurricular);
   setIsEditLeft2Mode(false);
 };
 
@@ -59,7 +59,7 @@ const handleExtraCurricularChange = (e, index, field) => {
 };
 
 const addExtraCurricular = () => {
-  setExtraCurricular([...ExtraCurricular, { Title: '', Description: '', SupportingLink: '', SupportingDocument: '' }]);
+  setExtraCurricular([...ExtraCurricular, { title: '', desc: '', link: '' }]);
 };
 
 const deleteExtraCurricular = (index) => {
@@ -80,19 +80,19 @@ return (
             <input
               type="text"
               placeholder="Title"
-              value={prores.Title}
-              onChange={(e) => handleProjectResearchChange(e, index, 'Title')}
+              value={prores.title}
+              onChange={(e) => handleProjectResearchChange(e, index, 'title')}
             />
             <textarea
               placeholder="Description"
-              value={prores.Description}
-              onChange={(e) => handleProjectResearchChange(e, index, 'Description')}
+              value={prores.desc}
+              onChange={(e) => handleProjectResearchChange(e, index, 'desc')}
             />
             <input
               type="text"
               placeholder="Upload link of your Project/Research"
-              value={prores.SupportingLink}
-              onChange={(e) => handleProjectResearchChange(e, index, 'SupportingLink')} 
+              value={prores.link}
+              onChange={(e) => handleProjectResearchChange(e, index, 'link')} 
               style={{ marginBottom: "5px"}}           
             />
             {index !== 0 && (
@@ -110,19 +110,19 @@ return (
       <h4>Project & Researches :</h4>
       {ProjectResearch.map((prores, index) => (
       <div key={index}>
-          { prores.Title?(<>
-          <h5>{prores.Title}</h5>
-          <p>{prores.Description}</p>
-          <p>{prores.SupportingLink?(
-              <a href={(prores.SupportingLink)} target="_blank">
+          { prores.title?(<>
+          <h5>{prores.title}</h5>
+          <p>{prores.desc}</p>
+          <p>{prores.link?(
+              <a href={(prores.link)} target="_blank">
                    Link &#x1F517;
               </a>):(<em>Validating Link N/A</em>)
               }
           </p>
-          {index===(ProjectResearch.length-1)?null:ProjectResearch[index+1].Title===''?null:(<hr/>)}
+          {index===(ProjectResearch.length-1)?null:ProjectResearch[index+1].title===''?null:(<hr/>)}
           </>
           ):
-          (prores.Title='')}
+          (prores.title='')}
       </div>
       ))}<div className="buttonatend2">
           <button className="proresbutton" onClick={handleLeftEditClick}><AiOutlineEdit/></button>
@@ -141,19 +141,19 @@ return (
                 <input
                   type="text"
                   placeholder="Title"
-                  value={extcur.Title}
-                  onChange={(e) => handleExtraCurricularChange(e, index, 'Title')}
+                  value={extcur.title}
+                  onChange={(e) => handleExtraCurricularChange(e, index, 'title')}
                 />
                 <textarea
                   placeholder="Description"
-                  value={extcur.Description}
-                  onChange={(e) => handleExtraCurricularChange(e, index, 'Description')}
+                  value={extcur.desc}
+                  onChange={(e) => handleExtraCurricularChange(e, index, 'desc')}
                 />
                 <input
                   type="text"
                   placeholder="Upload G-drive link of Validating Document"
-                  value={extcur.SupportingLink}
-                  onChange={(e) => handleExtraCurricularChange(e, index, 'SupportingLink')}            
+                  value={extcur.link}
+                  onChange={(e) => handleExtraCurricularChange(e, index, 'link')}            
                 />
                 {index !== 0 && (
                   <button className="proresbutton" onClick={() => deleteExtraCurricular(index)}>Delete</button>
@@ -170,19 +170,19 @@ return (
           <h4>Extra Curricular Activities:</h4>
             {ExtraCurricular.map((extcur, index) => (
               <div key={index}>
-                { extcur.Title?(<>
-                <h5>{extcur.Title}</h5>
-                <p>{extcur.Description}</p>
-                <p>{extcur.SupportingLink?(
-                    <a href={(extcur.SupportingLink)} target="_blank">
+                { extcur.title?(<>
+                <h5>{extcur.title}</h5>
+                <p>{extcur.desc}</p>
+                <p>{extcur.link?(
+                    <a href={(extcur.link)} target="_blank">
                         View Document &#x1F517;
                     </a>):(<em>Validating Document N/A</em>)
                     }
                 </p>
-                {index===(ExtraCurricular.length-1)?null:ExtraCurricular[index+1].Title===''?null:(<hr/>)}
+                {index===(ExtraCurricular.length-1)?null:ExtraCurricular[index+1].title===''?null:(<hr/>)}
                 </>
                 ):
-                (extcur.Title='')}
+                (extcur.title='')}
               </div>
           ))}
           <div className="buttonatend2">

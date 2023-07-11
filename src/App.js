@@ -32,7 +32,7 @@ function App() {
             <Route path="register" element={<Register /> } />
             <Route path="unauth" element={<UnAuth /> } />
 
-            <Route element={<RequireAuth allowedRole={"alumni"} />} >
+            <Route element={<RequireAuth allowedRole={["alumni"]} />} >
               <Route path="alumni" element={user ? <Home /> : <Navigate to="/" /> } />
               <Route path="login" element={user ? <Navigate to="/alumni" /> : <Login /> } />
               <Route path="alumni/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
@@ -40,7 +40,7 @@ function App() {
               <Route path="view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
             </Route>
             
-            <Route element={<RequireAuth allowedRole={"admin"} />} >
+            <Route element={<RequireAuth allowedRole={["admin"]} />} >
               <Route path="admin" element={user ? <Admin/> : <Navigate to="/" /> } />
               <Route path="login" element={user ? <Navigate to="/admin" /> : <Login /> } />
               <Route path="admin/alumni-search" element={<AlumniSearch/>} />
@@ -48,15 +48,9 @@ function App() {
               <Route path="view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
             </Route>
 
-            {/* <Route element={<RequireAuth allowedRole={"current_student"} />} > */}
-              <Route path='student' element={<Student />} />
-              {/* <Route path='student/profile' element={<EditProfile />} />
-              <Route path='student/academic' element={<Academic />} /> */}
-            {/* </Route> */}
-
-            {/* <Route element={<RequireAuth allowedRole={"outgoing_student"} />} > */}
-              <Route path='student/tnp-details' element={<Placement />} />
-            {/* </Route> */}
+            <Route element={<RequireAuth allowedRole={["current_student", "outgoing_student"]} />} >
+              <Route path='student' element={user ? <Student /> : <Navigate to="/" />} />
+            </Route>
           </Route>
 
         </Routes>

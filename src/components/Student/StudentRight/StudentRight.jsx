@@ -6,9 +6,10 @@ import { AiOutlineSave } from "react-icons/ai";
 import { AiOutlineContacts } from "react-icons/ai";
 import { SlSocialInstagram , SlSocialLinkedin , SlSocialTwitter} from "react-icons/sl";
 import { GrAchievement } from "react-icons/gr";
+import { updateAchievements } from '../../../apiCalls/current_student';
 
 
-const StudentRight = () => {
+const StudentRight = ({ user }) => {
   let [email, setEmail] = useState('xyz@email.com');
   let [altEmail, setAltEmail] = useState('');
   let [phoneNo, setPhoneNo] = useState(919999999999);
@@ -47,9 +48,7 @@ const StudentRight = () => {
 
 //for achievements edit button
 
-let [Achievements, setAchievements] = useState([
-  { Title: '', Description: '', SupportingLink: '', SupportingDocument: null },
-]);
+let [Achievements, setAchievements] = useState(user.student_achievements);
 let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
 
   const handleAchievementsChange = (e, index, field) => {
@@ -59,7 +58,7 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
   };
 
   const addAchievements = () => {
-    setAchievements([...Achievements, { Title: '', Description: '', SupportingLink: ''}]);
+    setAchievements([...Achievements, { title: '', desc: '', link: ''}]);
   };
 
   const deleteAchievements = (index) => {
@@ -73,6 +72,7 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
   };
 
   const handleRight2SaveClick = () => {
+    updateAchievements(Achievements)
     setIsEditRight2Mode(false);
   };
 
@@ -180,20 +180,20 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                 <input
                   type="text"
                   placeholder="Title"
-                  value={achievement.Title}
-                  onChange={(e) => handleAchievementsChange(e, index, 'Title')}
+                  value={achievement.title}
+                  onChange={(e) => handleAchievementsChange(e, index, 'title')}
                 />
                 <textarea
-                  placeholder="Description"
-                  value={achievement.Description}
+                  placeholder="desc"
+                  value={achievement.desc}
                   style={{height:'36px', resize:'vertical'}}
-                  onChange={(e) => handleAchievementsChange(e, index, 'Description')}
+                  onChange={(e) => handleAchievementsChange(e, index, 'desc')}
                 />
                 <input
                   type="text"
                   placeholder="Upload G-drive link of Validating Document"
-                  value={achievement.SupportingLink}
-                  onChange={(e) => handleAchievementsChange(e, index, 'SupportingLink')} 
+                  value={achievement.link}
+                  onChange={(e) => handleAchievementsChange(e, index, 'link')} 
                   style={{ marginBottom: "5px"}}           
                 />
                 {index !== 0 && (
@@ -213,19 +213,19 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
           <h4>Achievements <GrAchievement/> :</h4>
             {Achievements.map((Achievement, index) => (
             <div key={index}>
-                { Achievement.Title?(<>
-                <h5>{Achievement.Title}</h5>
-                <p>{Achievement.Description}</p>
-                <p>{Achievement.SupportingLink?(
-                    <a href={(Achievement.SupportingLink)} target="_blank">
+                { Achievement.title?(<>
+                <h5>{Achievement.title}</h5>
+                <p>{Achievement.desc}</p>
+                <p>{Achievement.link?(
+                    <a href={(Achievement.link)} target="_blank">
                         View Document &#x1F517;
                     </a>):(<em>Validating Document N/A</em>)
                     }
                 </p>
-                {index===(Achievements.length-1)?null:Achievements[index+1].Title===''?null:(<hr/>)}
+                {index===(Achievements.length-1)?null:Achievements[index+1].title===''?null:(<hr/>)}
                 </>
                 ):
-                (Achievement.Title='')}
+                (Achievement.title='')}
                 </div>
          ))}
          <div style={{display:'flex',justifyContent:'flex-end'}}>

@@ -34,7 +34,7 @@ const editBasicDetailsCall = async (user, details, dispatch) => {
                 'content-type': 'multipart/form-data'
             }
         }
-        const res = await axios.put('/alumni/edit-profile', details, config);
+        const res = await axios.put('/user/edit-profile/basic-details', details, config);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Details updated !");
@@ -47,7 +47,7 @@ const editBasicDetailsCall = async (user, details, dispatch) => {
 const editContactDetailsCall = async (user, details, dispatch) => {
     try {
         dispatch({ type : "UPDATE_USER_START", payload : user });
-        const res = await axios.put('/alumni/edit-profile/contact', details);
+        const res = await axios.put('/user/edit-profile/contact', details);
         // console.log(res)
         dispatch({ type : "UPDATE_USER_SUCCESS", payload : res.data });
         alert("Contact Details updated !");

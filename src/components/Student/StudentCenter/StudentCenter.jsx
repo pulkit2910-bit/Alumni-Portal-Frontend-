@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './StudentCenter.css'
 import { useState } from 'react';
 import { AiOutlineEdit } from "react-icons/ai";
@@ -7,21 +7,55 @@ import Cover from "../../../../src/img/cover.jpg";
 import ProfilePic from "../../../../src/img/img1.png";
 import Grades from '../Grades/Grades';
 import Placement from '../Placement/Placement';
+import { updateBasicDetails } from "../../../apiCalls/current_student"
 
-const StudentCenter = () => {
-  const [name, setName] = useState('John Doe');
-  const [title, setTitle] = useState('Software Engineer');
-  const [location, setLocation] = useState('San Francisco, CA');
-  const [about, setAbout] = useState('Experienced software engineer with a passion for web development.');
-  const [skills, setSkills] = useState(['JavaScript', 'React.js', 'Node.js', 'HTML', 'CSS']);
+const StudentCenter = ({ user }) => {
+  const [name, setName] = useState(user.name);
+  const [title, setTitle] = useState(user.title);
+  const [location, setLocation] = useState(user.location);
+  const [about, setAbout] = useState(user.about);
+  const [skills, setSkills] = useState(user.skills);
   const [isEditMode, setIsEditMode] = useState(false);
+
+  const profilePicRef = useRef();
+  const [editProfilePicDisplay, setEditProfilePicDisplay] = useState(false);
+  const [profilePic, setProfilePic] = useState(null);
+  const [profilePicPath, setProfilePicPath] = useState(user.avatar.url);
+
+  const handleMouseOver = () => {
+    if (isEditMode) setEditProfilePicDisplay(true);
+  }
+
+  const handleMouseOut = () => {
+    if (isEditMode) setEditProfilePicDisplay(false);
+  }
+
+  const handleProfilePicChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const img = e.target.files[0];
+      setProfilePic(img);
+      const imgUrl = URL.createObjectURL(img);
+      setProfilePicPath(imgUrl);
+    }
+  }
 
   const handleEditClick = () => {
     setIsEditMode(true);
   };
 
   const handleSaveClick = () => {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("profile-pic", profilePic);
+    formData.append("title", title);
+    formData.append("location", location);
+    formData.append("about", about);
+    formData.append("skills", skills);
+
+    updateBasicDetails(formData)
+
     setIsEditMode(false);
+    setEditProfilePicDisplay(false);
   };
 
   return (
@@ -29,7 +63,16 @@ const StudentCenter = () => {
       <div className="StudentProfilepageCard">
       <div className="StudentProfilepageImages">
         <img className="student-profilepage-cover" src={Cover} alt="" />
-        <img src={ProfilePic} alt="" />
+        <div className="profilePic" onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} onClick={() => profilePicRef.current.click()} >
+          <img src={profilePicPath} alt="" />
+          <div style={{display : `${editProfilePicDisplay ? "block" : "none"}`}} className="edit-profile-pic" >
+            <h5>Change Profile photo</h5>
+          </div>
+        </div>
+
+        <div style={{display : "none"}}>
+          <input type="file" name="profile-pic" accept=".png,.jpg,.jpeg" ref={profilePicRef} onChange={handleProfilePicChange} />
+        </div>
       </div>
       <div className="StudentProfilepageName">
         <span>{name}</span>
@@ -111,7 +154,7 @@ const StudentCenter = () => {
           <button onClick={handleEditClick}><AiOutlineEdit/> Edit</button>
         </div>
       )}
-      <Placement />
+      {user?.role === "outgoing_student" && <Placement />}
       <Grades />
     </div>
 
