@@ -39,7 +39,6 @@ const handleLeftEditClick = () => {
 };
 
 const handleLeftSaveClick = () => {
-  console.log(ProjectResearch)
   setIsEditLeftMode(false);
 };
 
@@ -54,7 +53,6 @@ const handleLeft2EditClick = () => {
 };
 
 const handleLeft2SaveClick = () => {
-  console.log(ExtraCurricular)
   setIsEditLeft2Mode(false);
 };
 
@@ -140,13 +138,13 @@ return (
           <p>{prores.SupportingDocument?(
               <a href={URL.createObjectURL(prores.SupportingDocument)} target="_blank">
                   View Document
-              </a>):(<>N/A</>)
+              </a>):(<em>Supporting Document N/A</em>)
               }
           </p>
           <p>{prores.SupportingLink?(
               <a href={(prores.SupportingLink)} target="_blank">
                    Link &#x1F517;
-              </a>):(<>N/A</>)
+              </a>):(<em>Supporting Link N/A</em>)
               }
           </p>
           {index===(ProjectResearch.length-1)?null:ProjectResearch[index+1].Title===''?null:(<hr/>)}
@@ -221,13 +219,13 @@ return (
                 <p>{extcur.SupportingDocument?(
                     <a href={URL.createObjectURL(extcur.SupportingDocument)} target="_blank">
                         View Document
-                    </a>):(<>N/A</>)
+                    </a>):(<em>Supporting Document N/A</em>)
                     }
                 </p>
                 <p>{extcur.SupportingDocument?(
                     <a href={(extcur.SupportingLink)} target="_blank">
                         Link &#x1F517;
-                    </a>):(<>N/A</>)
+                    </a>):(<em>Supporting Link N/A</em>)
                     }
                 </p>
                 {index===(ExtraCurricular.length-1)?null:ExtraCurricular[index+1].Title===''?null:(<hr/>)}

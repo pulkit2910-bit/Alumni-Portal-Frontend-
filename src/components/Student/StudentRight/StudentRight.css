@@ -23,7 +23,7 @@
     border: 1px solid rgba(253, 253, 253, 0.39);
   }
   
-  .student-edit-mode-right div:not(.socminputbox):not(.socminputbox>div),
+  .student-edit-mode-right div:not(.studentsocminputbox):not(.studentsocminputbox>div),
   .student-view-mode-right div {
     margin-bottom: 20px;
   }
@@ -121,15 +121,15 @@
     background-color: var(--hrColor);
   }
   
-  #student-socmheading{
+  #studentsocmheading{
     margin-bottom: 6px;
   }
   
-  .student-socminputbox button{
+  .studentsocminputbox button{
     margin-top:9px;
   }
   
-  .student-socminputbox>div:not(:last-child):not(:nth-last-child(2)){
+  .studentsocminputbox>div:not(:last-child):not(:nth-last-child(2)){
     margin-bottom:10px;
   }
   
@@ -140,4 +140,19 @@
 
   .student-view-mode-right div {
     margin-bottom: 0px;
+  }
+
+  #achievementsdiv{
+    margin-bottom: 0px;
+  }
+  
+  #achievementsbuttonbox{
+    margin-bottom: 0px;
+    display: flex;
+    justify-content:space-between;
+  }
+
+  
+  .student-view-mode-right em{
+    color: rgba(255, 0, 0, 0.69);
   }
