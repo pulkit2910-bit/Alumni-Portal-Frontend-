@@ -1,3 +1,14 @@
+.RightSide {
+    height: calc(100vh - 100px);
+    overflow: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+
+.RightSide::-webkit-scrollbar {
+    display: none;
+}
+
 .events-card {
   display: flex;
   flex-direction: column;

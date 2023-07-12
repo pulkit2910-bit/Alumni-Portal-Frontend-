@@ -1,10 +1,16 @@
 #studentcontainerighteditprofile{
-    height: 100vh;
+  height: calc(100vh - 100px);
     width: auto;
     overflow-y:auto;
     box-sizing: border-box;
     padding: 5px;
-  }
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+
+#studentcontainerighteditprofile::-webkit-scrollbar {
+    display: none;
+}
   
   .student-edit-mode-right,
   .student-view-mode-right {
