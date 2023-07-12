@@ -2,14 +2,13 @@ import React, {useState} from 'react'
 import './Placement.css'
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
+import { updateCompetitiveExams, updateHigherStudies, updateJobExperiences, updateJobOffers } from '../../../apiCalls/outgoing_student';
 
-const Placement = () => {
+const Placement = ({ user }) => {
 
 //for offers
 
-    let [JobOffers, setJobOffers] = useState([
-      { Company: '', Role: '', CTC: '', Type: 'On-Campus', SupportingLink: '' },
-    ]);
+    let [JobOffers, setJobOffers] = useState(user.student_job_offers);
     let [isEditPlacementMode1, setIsEditPlacementMode1] = useState(false);
 
     const handleJobOffersChange = (e, index, field) => {
@@ -19,7 +18,7 @@ const Placement = () => {
     };
 
     const addJobOffers = () => {
-      setJobOffers([...JobOffers, { Company: '', Role: '', CTC: '', Type: 'On-Campus', SupportingLink: '' }]);
+      setJobOffers([...JobOffers, { company: '', role: '', ctc: '', type: 'On-Campus', link: '' }]);
     };
 
     const deleteJobOffers = (index) => {
@@ -33,6 +32,7 @@ const Placement = () => {
     };
 
     const handlePlacementSaveClick1 = () => {
+      updateJobOffers(JobOffers);
       setIsEditPlacementMode1(false);
     };
 
@@ -40,9 +40,7 @@ const Placement = () => {
 
 //for experiences
 
-    let [StudentExperiences, setStudentExperiences] = useState([
-      { Company: '', Role: '', StartDate: '', EndDate: '', Description:'', SupportingLink: '' },
-    ]);
+    let [StudentExperiences, setStudentExperiences] = useState(user.student_job_experiences);
     let [isEditPlacementMode2, setIsEditPlacementMode2] = useState(false);
 
     const handleStudentExperiencesChange = (e, index, field) => {
@@ -52,7 +50,7 @@ const Placement = () => {
     };
 
     const addStudentExperiences = () => {
-      setStudentExperiences([...StudentExperiences, { Company: '', Role: '', StartDate: '', EndDate: '', Description:'', SupportingLink: '' }]);
+      setStudentExperiences([...StudentExperiences, { company: '', role: '', startDate: '', endDate: '', desc:'', link: '' }]);
     };
 
     const deleteStudentExperiences = (index) => {
@@ -66,6 +64,7 @@ const Placement = () => {
     };
 
     const handlePlacementSaveClick2 = () => {
+      updateJobExperiences(StudentExperiences);
       setIsEditPlacementMode2(false);
     };
 
@@ -73,9 +72,7 @@ const Placement = () => {
 
 //for cracked exams
 
-    let [AppearedExams, setAppearedExams] = useState([
-      { ExamName: '', Result: '', Description: '', SupportingLink: '' },
-    ]);
+    let [AppearedExams, setAppearedExams] = useState(user.student_competitive_exams);
     let [isEditPlacementMode3, setIsEditPlacementMode3] = useState(false);
 
     const handleAppearedExamsChange = (e, index, field) => {
@@ -85,7 +82,7 @@ const Placement = () => {
     };
 
     const addAppearedExams = () => {
-      setAppearedExams([...AppearedExams, { ExamName: '', Result: '', Description: '', SupportingLink: ''}]);
+      setAppearedExams([...AppearedExams, { examName: '', result: '', desc: '', link: ''}]);
     };
 
     const deleteAppearedExams = (index) => {
@@ -99,6 +96,7 @@ const Placement = () => {
     };
 
     const handlePlacementSaveClick3 = () => {
+      updateCompetitiveExams(AppearedExams);
       setIsEditPlacementMode3(false);
     };
 
@@ -106,9 +104,7 @@ const Placement = () => {
   
 //for higher education
 
-    let [StudentHigherStudies, setStudentHigherStudies] = useState([
-      { Institution: '', Degree: '', Description: '', SupportingLink: '' },
-    ]);
+    let [StudentHigherStudies, setStudentHigherStudies] = useState(user.student_higher_studies);
     let [isEditPlacementMode4, setIsEditPlacementMode4] = useState(false);
 
     const handleStudentHigherStudiesChange = (e, index, field) => {
@@ -118,7 +114,7 @@ const Placement = () => {
     };
 
     const addStudentHigherStudies = () => {
-      setStudentHigherStudies([...StudentHigherStudies, { Institution: '', Degree: '', Description: '', SupportingLink: '' }]);
+      setStudentHigherStudies([...StudentHigherStudies, { institution: '', degree: '', desc: '', link: '' }]);
     };
 
     const deleteStudentHigherStudies = (index) => {
@@ -132,6 +128,7 @@ const Placement = () => {
     };
 
     const handlePlacementSaveClick4 = () => {
+      updateHigherStudies(StudentHigherStudies)
       setIsEditPlacementMode4(false);
     };
 
@@ -159,32 +156,32 @@ const Placement = () => {
                 <input
                   type="text"
                   placeholder="Company"
-                  value={joboffer.Company}
-                  onChange={(e) => handleJobOffersChange(e, index, 'Company')}
+                  value={joboffer.company}
+                  onChange={(e) => handleJobOffersChange(e, index, 'company')}
                 />
                 <input
                   type="text"
                   placeholder="Role"
-                  value={joboffer.Role}
-                  onChange={(e) => handleJobOffersChange(e, index, 'Role')}
+                  value={joboffer.role}
+                  onChange={(e) => handleJobOffersChange(e, index, 'role')}
                 />      
                 <input
                   type="number"
                   placeholder="CTC (in ruppees)"
-                  value={joboffer.CTC}
-                  onChange={(e) => handleJobOffersChange(e, index, 'CTC')}
+                  value={joboffer.ctc}
+                  onChange={(e) => handleJobOffersChange(e, index, 'ctc')}
                   style={{ marginBottom: "5px", width: "75%" }}
                 />
-                <select value={joboffer.Type} onChange={(e) => handleJobOffersChange(e, index, 'Type')} style={{ marginBottom: "5px",width: "21%" }}>
+                <select value={joboffer.type} onChange={(e) => handleJobOffersChange(e, index, 'type')} style={{ marginBottom: "5px",width: "21%" }}>
                   <option value='On-Campus'>On-Campus</option>
                   <option value='Off-Campus'>Off-Campus</option>
                 </select>  
                 <input
                   type="text"
                   placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
-                  value={joboffer.SupportingLink}
+                  value={joboffer.link}
                   onChange={(e) =>
-                    handleJobOffersChange(e, index, 'SupportingLink')
+                    handleJobOffersChange(e, index, 'link')
                   }
                 /> 
                 {index !== 0 && (
@@ -202,21 +199,21 @@ const Placement = () => {
             <h4>Job offers :</h4>
             {JobOffers.map((joboffer, index) => (
               <div key={index}>
-                {joboffer.Company ? (<>
-                  <h5>{joboffer.Company}</h5>
-                  <p>{joboffer.Role}</p>
-                  {joboffer.CTC && <p> CTC: &#8377;{joboffer.CTC }</p>}
-                  <p>{joboffer.Type}</p>
-                  <p>{joboffer.SupportingLink ? (
-                    <a href={(joboffer.SupportingLink)} target="_blank">
+                {joboffer.company ? (<>
+                  <h5>{joboffer.company}</h5>
+                  <p>{joboffer.role}</p>
+                  {joboffer.ctc && <p> ctc: &#8377;{joboffer.ctc }</p>}
+                  <p>{joboffer.type}</p>
+                  <p>{joboffer.link ? (
+                    <a href={(joboffer.link)} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
-                  {index === (JobOffers.length - 1) ? null : JobOffers[index + 1].Company === '' ? null : (<hr />)}
+                  {index === (JobOffers.length - 1) ? null : JobOffers[index + 1].company === '' ? null : (<hr />)}
                 </>
                 ) :
-                  (joboffer.Company = '')}
+                  (joboffer.company = '')}
               </div>
             ))}<div className="placementbuttonatend2">
               <button className="placementbutton" onClick={handlePlacementEditClick1}><AiOutlineEdit /></button>
@@ -235,45 +232,45 @@ const Placement = () => {
               <div key={index}>
                 <input
                   type="text"
-                  placeholder="Company"
-                  value={exp.Company}
-                  onChange={(e) => handleStudentExperiencesChange(e, index, 'Company')}
+                  placeholder="company"
+                  value={exp.company}
+                  onChange={(e) => handleStudentExperiencesChange(e, index, 'company')}
                 />
                 <input
                   type="text"
-                  placeholder="Role"
-                  value={exp.Role}
-                  onChange={(e) => handleStudentExperiencesChange(e, index, 'Role')}
+                  placeholder="role"
+                  value={exp.role}
+                  onChange={(e) => handleStudentExperiencesChange(e, index, 'role')}
                 />
                 <input
                   type="text"
                   placeholder="Start Date"
-                  value={exp.StartDate}
+                  value={exp.startDate}
                   onFocus={(e) => (e.target.type = "date")}
                   onBlur={(e) => (e.target.type = "text")}
                   style={{width: "47%" }}
-                  onChange={(e) => handleStudentExperiencesChange(e, index, 'StartDate')}
+                  onChange={(e) => handleStudentExperiencesChange(e, index, 'startDate')}
                 />
                 <input
                   type="text"
                   placeholder="End Date"
-                  value={exp.EndDate}
+                  value={exp.endDate}
                   onFocus={(e) => (e.target.type = "date")}
                   onBlur={(e) => (e.target.type = "text")}
                   style={{width: "46%" }}
-                  onChange={(e) => handleStudentExperiencesChange(e, index, 'EndDate')}
+                  onChange={(e) => handleStudentExperiencesChange(e, index, 'endDate')}
                 />
                 <textarea
-                  placeholder="Description"
-                  value={exp.Description}
-                  onChange={(e) => handleStudentExperiencesChange(e, index, 'Description')}
+                  placeholder="desc"
+                  value={exp.desc}
+                  onChange={(e) => handleStudentExperiencesChange(e, index, 'desc')}
                 />
                 <input
                   type="text"
                   placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
-                  value={exp.SupportingLink}
+                  value={exp.link}
                   onChange={(e) =>
-                    handleStudentExperiencesChange(e, index, 'SupportingLink')
+                    handleStudentExperiencesChange(e, index, 'link')
                   }
                 />
                 {index !== 0 && (
@@ -291,21 +288,21 @@ const Placement = () => {
             <h4>Experiences :</h4>
             {StudentExperiences.map((exp, index) => (
               <div key={index}>
-                {exp.Company ? (<>
-                  <h5>{exp.Company}</h5>
-                  <p>{exp.Role}</p>
-                  <p>{formatDate(exp.StartDate)} {exp.EndDate?(<> - {formatDate(exp.EndDate)}</>):(<> - present</>)}</p>              
-                  <p>{exp.Description}</p>
-                  <p>{exp.SupportingLink ? (
-                    <a href={(exp.SupportingLink)} target="_blank">
+                {exp.company ? (<>
+                  <h5>{exp.company}</h5>
+                  <p>{exp.role}</p>
+                  <p>{formatDate(exp.startDate)} {exp.endDate?(<> - {formatDate(exp.endDate)}</>):(<> - present</>)}</p>              
+                  <p>{exp.desc}</p>
+                  <p>{exp.link ? (
+                    <a href={(exp.link)} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
-                  {index === (StudentExperiences.length - 1) ? null : StudentExperiences[index + 1].Company === '' ? null : (<hr />)}
+                  {index === (StudentExperiences.length - 1) ? null : StudentExperiences[index + 1].company === '' ? null : (<hr />)}
                 </>
                 ) :
-                  (exp.Company = '')}
+                  (exp.company = '')}
               </div>
             ))}<div className="placementbuttonatend2">
               <button className="placementbutton" onClick={handlePlacementEditClick2}><AiOutlineEdit /></button>
@@ -324,27 +321,27 @@ const Placement = () => {
               <div key={index}>
                 <input
                   type="text"
-                  placeholder="ExamName"
-                  value={exam.ExamName}
-                  onChange={(e) => handleAppearedExamsChange(e, index, 'ExamName')}
+                  placeholder="Exam Name"
+                  value={exam.examName}
+                  onChange={(e) => handleAppearedExamsChange(e, index, 'examName')}
                 />
                 <input
                   type="text"
                   placeholder="Result i.e rank, percentile, etc"
-                  value={exam.Result}
-                  onChange={(e) => handleAppearedExamsChange(e, index, 'Result')}
+                  value={exam.result}
+                  onChange={(e) => handleAppearedExamsChange(e, index, 'result')}
                 />
                 <textarea
                   placeholder="Description"
-                  value={exam.Description}
-                  onChange={(e) => handleAppearedExamsChange(e, index, 'Description')}
+                  value={exam.desc}
+                  onChange={(e) => handleAppearedExamsChange(e, index, 'desc')}
                 />
                 <input
                   type="text"
                   placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
-                  value={exam.SupportingLink}
+                  value={exam.link}
                   onChange={(e) =>
-                    handleAppearedExamsChange(e, index, 'SupportingLink')
+                    handleAppearedExamsChange(e, index, 'link')
                   }
                 />
                 {index !== 0 && (
@@ -362,20 +359,20 @@ const Placement = () => {
             <h4>Appeared Competitive Exams :</h4>
             {AppearedExams.map((exam, index) => (
               <div key={index}>
-                {exam.ExamName ? (<>
-                  <h5>{exam.ExamName}</h5>
-                  <p>{exam.Result}</p>
-                  <p>{exam.Description}</p>
-                  <p>{exam.SupportingLink ? (
-                    <a href={(exam.SupportingLink)} target="_blank">
+                {exam.examName ? (<>
+                  <h5>{exam.examName}</h5>
+                  <p>{exam.result}</p>
+                  <p>{exam.desc}</p>
+                  <p>{exam.link ? (
+                    <a href={(exam.link)} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
-                  {index === (AppearedExams.length - 1) ? null :AppearedExams[index + 1].ExamName === '' ? null : (<hr />)}
+                  {index === (AppearedExams.length - 1) ? null :AppearedExams[index + 1].examName === '' ? null : (<hr />)}
                 </>
                 ) :
-                  (exam.ExamName = '')}
+                  (exam.examName = '')}
               </div>
             ))}<div className="placementbuttonatend2">
               <button className="placementbutton" onClick={handlePlacementEditClick3}><AiOutlineEdit /></button>
@@ -395,26 +392,26 @@ const Placement = () => {
                 <input
                   type="text"
                   placeholder="Institution"
-                  value={hstudy.Institution}
-                  onChange={(e) => handleStudentHigherStudiesChange(e, index, 'Institution')}
+                  value={hstudy.institution}
+                  onChange={(e) => handleStudentHigherStudiesChange(e, index, 'institution')}
                 />
                 <input
                   type="text"
                   placeholder="Degree, for example - M.Tech in Computer science"
-                  value={hstudy.Degree}
-                  onChange={(e) => handleStudentHigherStudiesChange(e, index, 'Degree')}
+                  value={hstudy.degree}
+                  onChange={(e) => handleStudentHigherStudiesChange(e, index, 'degree')}
                 />
                 <textarea
-                  placeholder="Description"
-                  value={hstudy.Description}
-                  onChange={(e) => handleStudentHigherStudiesChange(e, index, 'Description')}
+                  placeholder="desc"
+                  value={hstudy.desc}
+                  onChange={(e) => handleStudentHigherStudiesChange(e, index, 'desc')}
                 />
                 <input
                   type="text"
                   placeholder="Upload G-drive link of Validating Document (or any Cloud Storage Link)"
-                  value={hstudy.SupportingLink}
+                  value={hstudy.link}
                   onChange={(e) =>
-                    handleStudentHigherStudiesChange(e, index, 'SupportingLink')
+                    handleStudentHigherStudiesChange(e, index, 'link')
                   }
                 />
                 {index !== 0 && (
@@ -432,20 +429,20 @@ const Placement = () => {
             <h4>Willing to Pursue Higher Studies :</h4>
             {StudentHigherStudies.map((hstudy, index) => (
               <div key={index}>
-                {hstudy.Institution ? (<>
-                  <h5>{hstudy.Institution}</h5>
-                  <p>{hstudy.Degree}</p>
-                  <p>{hstudy.Description}</p>
-                  <p>{hstudy.SupportingLink ? (
-                    <a href={(hstudy.SupportingLink)} target="_blank">
+                {hstudy.institution ? (<>
+                  <h5>{hstudy.institution}</h5>
+                  <p>{hstudy.degree}</p>
+                  <p>{hstudy.desc}</p>
+                  <p>{hstudy.link ? (
+                    <a href={(hstudy.link)} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }
                   </p>
-                  {index === (StudentHigherStudies.length - 1) ? null : StudentHigherStudies[index + 1].Institution === '' ? null : (<hr />)}
+                  {index === (StudentHigherStudies.length - 1) ? null : StudentHigherStudies[index + 1].institution === '' ? null : (<hr />)}
                 </>
                 ) :
-                  (hstudy.Institution = '')}
+                  (hstudy.institution = '')}
               </div>
             ))}<div className="placementbuttonatend2">
               <button className="placementbutton" onClick={handlePlacementEditClick4}><AiOutlineEdit /></button>

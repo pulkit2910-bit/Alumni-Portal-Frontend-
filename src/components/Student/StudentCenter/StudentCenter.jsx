@@ -154,7 +154,7 @@ const StudentCenter = ({ user }) => {
           <button onClick={handleEditClick}><AiOutlineEdit/> Edit</button>
         </div>
       )}
-      {user?.role === "outgoing_student" && <Placement />}
+      {user?.role === "outgoing_student" && <Placement user={user} />}
       <Grades />
     </div>
 
