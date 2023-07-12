@@ -19,6 +19,7 @@ import Placement from './components/Student/Placement/Placement'
 import AddEvents from './components/Admin/AddEvents/AddEvents';
 import RequireAuth from './features/Auth/RequireAuth';
 import UnAuth from './components/UnAuth';
+import StudentSearch from './components/Admin/StudentSearch/StudentSearch';
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -44,6 +45,7 @@ function App() {
               <Route path="admin" element={user ? <Admin/> : <Navigate to="/" /> } />
               <Route path="login" element={user ? <Navigate to="/admin" /> : <Login /> } />
               <Route path="admin/alumni-search" element={<AlumniSearch/>} />
+              <Route path="admin/student-search" element={<StudentSearch/>} />
               <Route path="admin/add-events" element={user ? <AddEvents/> : <Navigate to="/" /> } />
               <Route path="view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
             </Route>

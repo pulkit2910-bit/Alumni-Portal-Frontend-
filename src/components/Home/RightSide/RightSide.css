@@ -1,4 +1,4 @@
-.events-container {
+.events-card {
   display: flex;
   flex-direction: column;
   border-radius: 1.5rem;
@@ -16,17 +16,17 @@
   border: 1px solid rgba(253, 253, 253, 0.39);
 }
 
-.event-container {
+.event-card {
     font-size: large;
     display: flex;
     flex-direction: column;
 }
 
-.event-container div:nth-of-type(1) {
+.event-card div:nth-of-type(1) {
     display: flex;
     justify-content: space-between;
 }
 
-.event-container div:nth-of-type(2) {
+.event-card div:nth-of-type(2) {
     font-size: 1rem;
 }
