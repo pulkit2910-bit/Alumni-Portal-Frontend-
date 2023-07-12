@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./AddEvents.css"
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
-import { EventsContext } from '../../../Context/EventsContext/EventsContext';
 import { addEvent, deleteEvent } from '../../../apiCalls/event';
 import axios from 'axios';
 

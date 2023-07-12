@@ -274,7 +274,9 @@ flex-direction: row;
   background-color: #174512;
 }
 
-
+.search-container-admin-true{
+height: calc(100vh - 136px);
+}
 
 
 /* 
