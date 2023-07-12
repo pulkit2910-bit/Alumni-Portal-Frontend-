@@ -1,7 +1,7 @@
 .student-profile-page {
     padding: 0px 10px 0px 10px;
       max-width: 100%;
-      height: calc(100vh - 20px);
+      height: calc(100vh - 120px);
       overflow: auto;
       -ms-overflow-style: none;  /* IE and Edge */
       scrollbar-width: none;

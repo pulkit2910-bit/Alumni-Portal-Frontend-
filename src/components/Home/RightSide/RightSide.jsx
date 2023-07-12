@@ -20,16 +20,18 @@ const RightSide = () => {
   }
 
   return (
-    <div className='events-card'>
-      {events.map((event, idx) => (
-        <div className='event-card'>
-          <div>
-            <div><b>{event.title}</b></div>
-            <div><b>{event.date}</b></div>
+    <div className="RightSide">
+      <div className='events-card'>
+        {events.map((event, idx) => (
+          <div className='event-card'>
+            <div>
+              <div><b>{event.title}</b></div>
+              <div><b>{event.date}</b></div>
+            </div>
+            <div>{event.content}</div>
           </div>
-          <div>{event.content}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }

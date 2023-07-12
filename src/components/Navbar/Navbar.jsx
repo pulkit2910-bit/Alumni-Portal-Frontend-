@@ -3,7 +3,7 @@ import "./Navbar.css";
 import axios from "axios";
 // icons
 import Logo from "../../../src/img/logo.png";
-import { GoHome, GoCalendar, GoLocation } from "react-icons/go";
+import { GoHome } from "react-icons/go";
 import { SlPeople } from "react-icons/sl";
 import { CiUser, CiLogout } from "react-icons/ci";
 import { useNavigate } from "react-router-dom";
@@ -79,16 +79,10 @@ const Navbar = () => {
               <GoHome />
             </Link>
           </div>
-          <div title="Events">
-            <GoCalendar />
-          </div>
           <div title="People"> 
             <Link to="/alumni/search" >
               <SlPeople />
             </Link>
-          </div>
-          <div title="Map">
-            <GoLocation />
           </div></>)}
           <div
             className="profile-navbar"

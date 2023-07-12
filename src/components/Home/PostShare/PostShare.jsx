@@ -6,8 +6,6 @@ import img1 from "../../../img/img1.png"
 //icons
 import { HiOutlinePhoto } from "react-icons/hi2";
 import { AiOutlinePlayCircle } from "react-icons/ai";
-import { IoLocationOutline } from "react-icons/io5";
-import { BsEmojiSmile } from "react-icons/bs";
 import { RxCross2 } from "react-icons/rx";
 import { createPost } from "../../../apiCalls/posts";
 import { FeedContext } from "../../../Context/FeedContext/FeedContext";
@@ -47,7 +45,7 @@ const PostShare = () => {
 
   return (
     <div className="PostShare">
-      <img src={img1} alt="" />
+      <img src={user.avatar.url} alt="" />
       <form className="post-share-form" onSubmit={handleSubmit}>
         <input
           type="text"

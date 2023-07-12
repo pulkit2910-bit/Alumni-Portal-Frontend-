@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from "react";
 import "./Login.css";
 import logo from "../../img/logo.png";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { loginCall } from "../../apiCalls/auth";
 import { AuthContext } from "../../Context/AuthContext/AuthContext";
 

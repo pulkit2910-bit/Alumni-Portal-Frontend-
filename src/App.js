@@ -8,14 +8,10 @@ import Search from './pages/Search/Search';
 import Student from './pages/Student/Student';
 import ViewProfile from './pages/View profile/ViewProfile';
 import Layout from "./components/Layout"
-import LinkPage from "./components/LinkPage"
 import { useContext } from 'react';
 import { AuthContext } from './Context/AuthContext/AuthContext';
 import Admin from './pages/Admin/Admin';
 import AlumniSearch from './components/Admin/AlumniSearch/AlumniSearch';
-// import EditProfile from './components/Student/EditProfile/EditProfile'
-// import Academic from './components/Student/Academic/Academic'
-import Placement from './components/Student/Placement/Placement'
 import AddEvents from './components/Admin/AddEvents/AddEvents';
 import RequireAuth from './features/Auth/RequireAuth';
 import UnAuth from './components/UnAuth';

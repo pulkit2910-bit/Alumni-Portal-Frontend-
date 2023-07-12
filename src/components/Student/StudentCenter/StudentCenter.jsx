@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { AiOutlineEdit } from "react-icons/ai";
 import { AiOutlineSave } from "react-icons/ai";
 import Cover from "../../../../src/img/cover.jpg";
-import ProfilePic from "../../../../src/img/img1.png";
 import Grades from '../Grades/Grades';
 import Placement from '../Placement/Placement';
 import { updateBasicDetails } from "../../../apiCalls/current_student"
@@ -76,6 +75,7 @@ const StudentCenter = ({ user }) => {
       </div>
       <div className="StudentProfilepageName">
         <span>{name}</span>
+        <span>{user?.rollNumber}</span>
       </div>
       <div className='student-profilepageCard-options'>
         <div>
