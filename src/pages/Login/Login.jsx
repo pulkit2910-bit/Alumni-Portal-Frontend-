@@ -35,7 +35,7 @@ const Login = () => {
       <div className="container">
         <form className="box" onSubmit={handleSubmit}>
           <img src={logo} alt="" />
-          <h3>ALUMNI PORTAL</h3>
+          <h3>ALUMNI-STUDENT PORTAL</h3>
           <h4>CSE DEPARTMENT</h4>
           <h4 id="bit">BIT MESRA</h4>
           <input type="text" placeholder="Email address" ref={email} />
