@@ -45,10 +45,16 @@ const Navbar = () => {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const settings = useRef();
-  const options = [
+  let options = [
     { label: "My Profile", icon: <CiUser />, id: 0 },
     { label: "Logout", icon: <CiLogout />, id: 1 },
   ];
+
+  if (user?.role !==  "alumni") {
+    options = [
+      { label: "Logout", icon: <CiLogout />, id: 1 },
+    ];
+  }
 
   // drop down feature not working
   // useEffect(() => {
@@ -67,22 +73,23 @@ const Navbar = () => {
           <img src={Logo} alt="" />
         </div>
         <div className="navIcons">
+          {user?.role === "alumni" && (<>
           <div title="Home">
-          <Link to="/alumni" >
-            <GoHome />
+            <Link to="/alumni" >
+              <GoHome />
             </Link>
           </div>
           <div title="Events">
             <GoCalendar />
           </div>
           <div title="People"> 
-          <Link to="/alumni/search" >
-            <SlPeople />
-          </Link>
+            <Link to="/alumni/search" >
+              <SlPeople />
+            </Link>
           </div>
           <div title="Map">
             <GoLocation />
-          </div>
+          </div></>)}
           <div
             className="profile-navbar"
             title="Profile"

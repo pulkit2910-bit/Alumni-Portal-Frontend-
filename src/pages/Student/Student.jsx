@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import "./Student.css"
 import StudentLeft from '../../components/Student/StudentLeft/StudentLeft';
 import StudentCenter from '../../components/Student/StudentCenter/StudentCenter';
 import StudentRight from '../../components/Student/StudentRight/StudentRight';
+import { AuthContext } from '../../Context/AuthContext/AuthContext';
+import Navbar from '../../components/Navbar/Navbar';
 
 const Student = () => {
-    return (
-      <div className='Student'>
-          <StudentLeft />
-          <StudentCenter/>
-          <StudentRight />
+  const { user } = useContext(AuthContext);
+  
+  return (
+    <div className='Student'>
+      <div className="navbar">
+        <Navbar />
       </div>
+      <div className="student-middle">
+        <StudentLeft user={user} />
+        <StudentCenter user={user}/>
+        <StudentRight user={user} />
+      </div>
+    </div>
     )
   }
 

@@ -5,7 +5,7 @@ const Vpleft = ({ user }) => {
 
   let education = user.education;
   let experience = user.experience;
-  console.log(experience);
+  // console.log(experience);
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const date = new Date(dateString);

@@ -9,6 +9,7 @@ const LinkPage = () => {
       <br />
       <Link to="/alumni">Alumni Page</Link>
       <Link to="/admin">Admin Page</Link>
+      <Link to="/student">Student Page</Link>
     </div>
   );
 };

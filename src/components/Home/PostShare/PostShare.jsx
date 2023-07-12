@@ -35,7 +35,7 @@ const PostShare = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
+    // console.log("submitted");
 
     const formData = new FormData();
     formData.append("desc", desc.current.value);
