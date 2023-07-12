@@ -28,14 +28,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route index element={<LinkPage />} />
-            <Route path='login' element={<Login />} />
+            <Route index element={<Login />} />
             <Route path="register" element={<Register /> } />
             <Route path="unauth" element={<UnAuth /> } />
 
             <Route element={<RequireAuth allowedRole={["alumni"]} />} >
               <Route path="alumni" element={user ? <Home /> : <Navigate to="/" /> } />
-              <Route path="login" element={user ? <Navigate to="/alumni" /> : <Login /> } />
+              <Route path="/" element={user ? <Navigate to="/alumni" /> : <Login /> } />
               <Route path="alumni/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
               <Route path="alumni/search" element={user ? <Search /> : <Navigate to="/" /> } />
               <Route path="view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
@@ -43,7 +42,7 @@ function App() {
             
             <Route element={<RequireAuth allowedRole={["admin"]} />} >
               <Route path="admin" element={user ? <Admin/> : <Navigate to="/" /> } />
-              <Route path="login" element={user ? <Navigate to="/admin" /> : <Login /> } />
+              <Route path="/" element={user ? <Navigate to="/admin" /> : <Login /> } />
               <Route path="admin/alumni-search" element={<AlumniSearch/>} />
               <Route path="admin/student-search" element={<StudentSearch/>} />
               <Route path="admin/add-events" element={user ? <AddEvents/> : <Navigate to="/" /> } />

@@ -11,12 +11,10 @@ const Login = () => {
   const { isFetching, error, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    loginCall({ email: email.current.value, password : password.current.value }, dispatch);
+    const user = await loginCall({ email: email.current.value, password : password.current.value }, dispatch);
     if (error && error.response.status === 400) {
       alert(error.response.data.message); return;
     }
@@ -24,7 +22,12 @@ const Login = () => {
       alert(error.response.data.message); return;
     }
     alert("Login Success");
-    navigate(from, { replace: true });
+    let role;
+    if (user?.role === "outgoing_student" || user?.role === "current_student") {
+      role = "student";
+    }
+    else role = user?.role;
+    navigate(`/${role}`);
   }
 
   return (
