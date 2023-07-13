@@ -8,25 +8,25 @@ import { AuthContext } from "../../Context/AuthContext/AuthContext";
 const Login = () => {
   const email = useRef();
   const password = useRef();
-  const { isFetching, error, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await loginCall({ email: email.current.value, password : password.current.value }, dispatch);
-    if (error && error.response.status === 400) {
-      alert(error.response.data.message); return;
+    const res = await loginCall({ email: email.current.value, password : password.current.value }, dispatch);
+    if (res && res?.response?.status === 400) {
+      alert(res.response.data.message); return;
     }
-    if (error && error.response.status === 404) {
-      alert(error.response.data.message); return;
+    if (res && res?.response?.status === 404) {
+      alert(res.response.data.message); return;
     }
-    alert("Login Success");
+    
     let role;
-    if (user?.role === "outgoing_student" || user?.role === "current_student") {
+    if (res?.role === "outgoing_student" || res?.role === "current_student") {
       role = "student";
     }
-    else role = user?.role;
+    else role = res?.role;
     navigate(`/${role}`);
   }
 
