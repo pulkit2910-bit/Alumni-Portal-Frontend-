@@ -31,4 +31,15 @@ const createPost = async (prvPosts, postDetails, dispatch) => {
     }
 }
 
-export { userFeed, createPost };
+const deletePost = async (prvPosts, postID, dispatch) => {
+    dispatch({ type : "DELETE_POST_START" });
+    try {
+        await axios.delete(`/posts/${postID}`);
+        dispatch({ type : "DELETE_POST_SUCCESS", payload : prvPosts.filter((p) => p._id !== postID) })
+    } catch (err) {
+        dispatch({ type : "DELETE_POST_ERROR", payload : err })
+        console.log(err);
+    }
+}
+
+export { userFeed, createPost, deletePost };

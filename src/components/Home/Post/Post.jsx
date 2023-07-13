@@ -1,15 +1,42 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Post.css";
-import TimeAgo from 'react-timeago';
-
-// icons
-import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import axios from "axios";
+import TimeAgo from 'react-timeago';
+import { AuthContext } from "../../../Context/AuthContext/AuthContext";
+import { FeedContext } from "../../../Context/FeedContext/FeedContext";
+import { MdDelete } from "react-icons/md";
+import { GoKebabVertical } from "react-icons/go";
+import { deletePost } from "../../../apiCalls/posts";
 
-const Post = ({post, profile}) => {
+const DropdownItem = ({ item, postID }) => {
+  const {posts, dispatch} = useContext(FeedContext);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (item.id === 0) {
+      // delete post
+      deletePost(posts, postID, dispatch);
+    }
+  };
+
+  return (
+    <li className="dropdownItem" onClick={(e) => handleClick(e)}>
+      <p>
+        {item.icon}
+        {item.label}
+      </p>
+    </li>
+  );
+};
+
+const Post = ({ post }) => {
   const { user: currentUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
+  const [open, setOpen] = useState(false);
+  const options = [
+    { label: "Delete Post", icon: <MdDelete />, id: 0 },
+  ];
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -35,6 +62,16 @@ const Post = ({post, profile}) => {
             <span>
               <b>{user.name}</b>
             </span>
+            {(post.userID === currentUser._id.toString() || currentUser.role === "admin") && <div className="menu" onClick={() => setOpen(!open)}>
+              <GoKebabVertical />
+              <div className={`postDropdown ${open ? "active" : "inactive"}`}>
+                <ul>
+                  {options.map((item, key) => {
+                    return <DropdownItem item={item} postID={post._id} key={key} />;
+                  })}
+                </ul>
+              </div>
+            </div>}
           </div>
     
           <hr />
