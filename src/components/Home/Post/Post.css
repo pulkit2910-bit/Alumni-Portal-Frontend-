@@ -143,6 +143,25 @@ li > p:hover {
   color: #f95f35;
 }
 
+.postReact {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.4rem;
+  padding: 0 1.5rem;
+}
+
+.postReact > img {
+  object-fit: contain;
+}
+
+.postReact > img:hover {
+  cursor: pointer;
+}
+
+.likes {
+  padding: 0 1.5rem;
+}
+
 .postBottom {
   font-size: 0.8rem;
   opacity: 0.8;

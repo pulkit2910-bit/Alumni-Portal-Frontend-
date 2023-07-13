@@ -6,7 +6,12 @@ import { AuthContext } from "../../../Context/AuthContext/AuthContext";
 import { FeedContext } from "../../../Context/FeedContext/FeedContext";
 import { MdDelete } from "react-icons/md";
 import { GoKebabVertical } from "react-icons/go";
+import Like from "../../../img/like.png";
+import NotLike from "../../../img/notlike.png";
+import Comment from "../../../img/comment.png";
+import Share from "../../../img/share.png";
 import { deletePost } from "../../../apiCalls/posts";
+import { Link } from "react-router-dom";
 
 const DropdownItem = ({ item, postID }) => {
   const {posts, dispatch} = useContext(FeedContext);
@@ -31,6 +36,8 @@ const DropdownItem = ({ item, postID }) => {
 
 const Post = ({ post }) => {
   const { user: currentUser } = useContext(AuthContext);
+  const [likes, setLikes] = useState(post.likes.length);
+  const [isLiked, setIsLiked] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
   const [open, setOpen] = useState(false);
@@ -42,6 +49,7 @@ const Post = ({ post }) => {
     const fetchUser = async () => {
       const res = await axios.get(`/user?userID=${post.userID}`);
       setUser(res.data);
+      setIsLiked(post.likes.includes(currentUser._id));
       setLoading(false);
     };
     fetchUser();
@@ -51,6 +59,14 @@ const Post = ({ post }) => {
   if (loading) {
     return <div>Loading...</div>
   }
+
+  const likeHandler = async () => {
+    try {
+      await axios.put(`/posts/like/${post._id}`);
+    } catch (err) {}
+    setLikes(isLiked ? likes - 1 : likes + 1);
+    setIsLiked(!isLiked);
+  };
 
   return (
 
@@ -79,6 +95,14 @@ const Post = ({ post }) => {
           <img src={post.img.url} alt="" />
     
           <hr />
+
+          <div className="postReact">
+            <img onClick={likeHandler} src={isLiked ? Like : NotLike} alt="" />
+            <img src={Comment} alt="" />
+            <img src={Share} alt="" />
+          </div>
+
+          <span className="likes">{likes} likes</span>
     
           <div className="details">
             <span>{user.name}</span>
