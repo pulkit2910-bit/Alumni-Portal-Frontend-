@@ -34,7 +34,8 @@ function SearchPage({isAdmin}) {
   }, [page]);
 
   const handleClick = (profile) => {
-    navigate(`/view-profile/${profile._id}`);
+    if (isAdmin) navigate(`/admin/view-profile/${profile._id}`);
+    else navigate(`/alumni/view-profile/${profile._id}`);
   }
 
   const handleToggleFilters = () => {

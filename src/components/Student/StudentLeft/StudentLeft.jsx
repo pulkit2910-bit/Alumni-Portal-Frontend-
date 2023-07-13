@@ -70,7 +70,7 @@ const deleteExtraCurricular = (index) => {
 
 //html/jsx code
 return (
-  <div id="containsstudentlefteditprofile">
+  <div className="containsstudentlefteditprofile">
   <div>
     {isEditLeftMode ? (
       <div className="student-edit-mode-left">

@@ -33,7 +33,7 @@ function App() {
               <Route path="/" element={user ? <Navigate to="/alumni" /> : <Login /> } />
               <Route path="alumni/profile" element={user ? <Profile /> : <Navigate to="/" /> } />
               <Route path="alumni/search" element={user ? <Search /> : <Navigate to="/" /> } />
-              <Route path="view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
+              <Route path="/alumni/view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
             </Route>
             
             <Route element={<RequireAuth allowedRole={["admin"]} />} >
@@ -42,7 +42,7 @@ function App() {
               <Route path="admin/alumni-search" element={<AlumniSearch/>} />
               <Route path="admin/student-search" element={<StudentSearch/>} />
               <Route path="admin/add-events" element={user ? <AddEvents/> : <Navigate to="/" /> } />
-              <Route path="view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
+              <Route path="/admin/view-profile/:userID" element={user ? <ViewProfile/> : <Navigate to="/" /> } />
             </Route>
 
             <Route element={<RequireAuth allowedRole={["current_student", "outgoing_student"]} />} >
