@@ -193,7 +193,7 @@ function SearchPage({isAdmin}) {
     <>
       {!isAdmin && <Navbar />}
       <div className="search-page">
-        <div className={isAdmin? "search-container" : "search-container search-container-admin-true"}>
+        <div className={isAdmin? "search-container search-container-admin-true" : "search-container" }>
           <input
             type="text"
             placeholder="Search profiles"
