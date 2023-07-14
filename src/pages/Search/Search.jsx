@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx';
 import { useNavigate } from "react-router-dom";
 
 import { AiOutlineDownload } from "react-icons/ai";
-import { AiOutlineMail } from "react-icons/ai";
+import Loading from "../../components/Loading/Loading";
 
 function SearchPage({isAdmin}) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -186,7 +186,7 @@ function SearchPage({isAdmin}) {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <><Loading /></>;
   }
 
   return (
@@ -294,9 +294,9 @@ function SearchPage({isAdmin}) {
             Download Experiences &nbsp; <AiOutlineDownload/>
           </button>
 
-          <button>
+          {/* <button>
             Mail all  &nbsp; <AiOutlineMail/>
-          </button> 
+          </button>  */}
         </footer>}
       </div>
     </>
