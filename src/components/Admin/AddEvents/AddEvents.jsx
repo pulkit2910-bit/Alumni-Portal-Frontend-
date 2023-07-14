@@ -3,11 +3,13 @@ import "./AddEvents.css"
 import AdminNavbar from '../AdminNavbar/AdminNavbar'
 import { addEvent, deleteEvent } from '../../../apiCalls/event';
 import axios from 'axios';
+import Loading from '../../Loading/Loading';
 
 const AddEvents= () => {
     const [events, setEvents] = useState([]);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [loading, setLoading] = useState(true);
 
     // const { events : currEvents, dispatch } = useContext(EventsContext);
 
@@ -15,6 +17,7 @@ const AddEvents= () => {
       async function fetchEvents() {
         const res = await axios.get('/events');
         setEvents(res.data);
+        setLoading(false);
       }
       fetchEvents();
     }, []);
@@ -55,6 +58,10 @@ const AddEvents= () => {
       const eventID = event._id;
       deleteEvent(eventID);
     };
+
+    if (loading) {
+      return <><Loading /></>
+    }
   
     return (<>
       <AdminNavbar/> 

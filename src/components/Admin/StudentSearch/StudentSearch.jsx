@@ -1,40 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
-import Profilepicture from "../../../img/img1.png";
+import Loading from "../../Loading/Loading"
 import { AiOutlineDownload } from "react-icons/ai";
-import { AiOutlineMail } from "react-icons/ai";
 import './StudentSearch.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const StudentSearch = () => {
-  const profiles = [
-    // Array of profile objects
-    { id: 1, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 2, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 3, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 4, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 5, name: "John Doe", rollNumber: "MTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 6, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 7, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 8, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 9, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 10, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 11, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 12, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 13, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },  
-    { id: 14, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 15, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 16, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 17, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 18, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 19, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 20, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 21, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 22, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-    { id: 23, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
-    { id: 24, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
-  ];
+  // const profiles = [
+  //   // Array of profile objects
+  //   { id: 1, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 2, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 3, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 4, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 5, name: "John Doe", rollNumber: "MTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 6, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 7, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 8, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 9, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 10, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 11, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 12, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 13, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },  
+  //   { id: 14, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 15, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 16, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 17, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 18, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 19, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 20, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 21, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 22, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  //   { id: 23, name: "John Doe", rollNumber: "BTECH/10009/20", GPA: "9.2", batch: "2022", degree: "BTECH", backlog: "3" },
+  //   { id: 24, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
+  // ];
 
   const [loading, setLoading] = useState(true);
   const [users, setUsers] = useState([]);
@@ -107,7 +106,7 @@ const StudentSearch = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>
+    return <><Loading /></>
   }
 
   return (
@@ -174,12 +173,24 @@ const StudentSearch = () => {
         <footer className="AdminFooter">
           {/* insert onclick backend codes here */}
           <button>
-            Download  &nbsp; <AiOutlineDownload/>
+            Download Details  &nbsp; <AiOutlineDownload/>
+          </button>
+          
+          <button>
+            Download GPA & Backlogs  &nbsp; <AiOutlineDownload/>
           </button>
 
           <button>
+            Download Achievements &nbsp; <AiOutlineDownload/>
+          </button>
+
+          <button>
+            Download Projects & Research &nbsp; <AiOutlineDownload/>
+          </button>
+
+          {/* <button>
             Mail all  &nbsp; <AiOutlineMail/>
-          </button> 
+          </button>  */}
         </footer>
     </>
   );
