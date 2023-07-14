@@ -154,7 +154,7 @@ const StudentSearch = () => {
           <div key={profile.id} className="profile-card" onClick={() => handleClick(profile)}>
             <div className='upperprofilecard'>
             <div className="profile-picture">
-              <img src={Profilepicture} alt="Profile" />
+              <img src={profile.avatar.url} alt="Profile" />
             </div>
             <hr />
             <div className="profile-details">
