@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminNavbar from '../AdminNavbar/AdminNavbar';
 import Profilepicture from "../../../img/img1.png";
 import { AiOutlineDownload } from "react-icons/ai";
 import { AiOutlineMail } from "react-icons/ai";
 import './StudentSearch.css'
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const StudentSearch = () => {
   const profiles = [
@@ -34,8 +36,10 @@ const StudentSearch = () => {
     { id: 24, name: "Jane Smith", rollNumber: "MTECH/10009/20", GPA: "8.4", batch: "2021", degree: "MTECH", backlog: "1" },
   ];
 
+  const [loading, setLoading] = useState(true);
+  const [users, setUsers] = useState([]);
+  const [searchResults, setSearchResults] = useState(users);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState(profiles);
   const [filters, setFilters] = useState({
     GPA: '',
     batch: '',
@@ -43,6 +47,22 @@ const StudentSearch = () => {
     backlog: '',
   });
   const [showFilters, setShowFilters] = useState(false);
+  const [page, setPage] = useState(1);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchAllUsers = async () => {
+      const res = await axios.get(`/user/student/search?page=${page}`);
+      setUsers(res.data);
+      setSearchResults(res.data);
+      setLoading(false);
+    };
+    fetchAllUsers();
+  }, [page]);
+
+  const handleClick = (profile) => {
+    navigate(`/admin/view-profile/${profile._id}`);
+  }
 
   const handleToggleFilters = () => {
     setShowFilters(!showFilters);
@@ -57,27 +77,38 @@ const StudentSearch = () => {
   };
 
   const searchGreaterThan = (number, target) => {
-    
     if (Number(number) >= Number(target)) return true;
     else return false;
   };
 
   const handleSearch = () => {
-    const filteredResults = profiles.filter((profile) =>
-      (profile.name.toLowerCase().includes(searchQuery.toLowerCase()) || profile.rollNumber.toLowerCase().includes(searchQuery.toLowerCase())) &&
-      searchGreaterThan(profile.GPA , filters.GPA) &&
-      profile.batch.toLowerCase().includes(filters.batch.toLowerCase()) &&
-      profile.degree.toLowerCase().includes(filters.degree.toLowerCase()) &&
-      searchGreaterThan(profile.backlog , filters.backlog)
+    const newRes = users.filter((res) =>
+      res.name?.toLowerCase().includes(searchQuery?.toLowerCase())
     );
+    setSearchResults(newRes);
+    // console.log(searchResults)
+  };
+
+  const handleApplyFilter = () => {
+    // const filteredResults = profiles.filter((profile) =>
+    //   (profile.name.toLowerCase().includes(searchQuery.toLowerCase()) || profile.rollNumber.toLowerCase().includes(searchQuery.toLowerCase())) &&
+    //   searchGreaterThan(profile.GPA , filters.GPA) &&
+    //   profile.batch.toLowerCase().includes(filters.batch.toLowerCase()) &&
+    //   profile.degree.toLowerCase().includes(filters.degree.toLowerCase()) &&
+    //   searchGreaterThan(profile.backlog , filters.backlog)
+    // );
+    const filteredResults = users.filter((res) => {
+      const isMatchBatch = filters.batch === "" || (res.batch !== "" && res.batch?.toLowerCase().includes(filters.batch.toLowerCase()));
+      const isMatchDegree = filters.degree === "" || (res.degree !== "" && res.degree?.toLowerCase().includes(filters.degree.toLowerCase()));
+    
+      return isMatchBatch && isMatchDegree;
+    });
     setSearchResults(filteredResults);
   };
 
-  const sortedResults = searchResults.sort((a, b) => {
-    const dateA = new Date(a.createdDate);
-    const dateB = new Date(b.createdDate);
-    return dateB - dateA;
-  });
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>
@@ -114,30 +145,30 @@ const StudentSearch = () => {
         <label htmlFor="backlog">Backlog:</label>
         <input type="number" id="backlog" name="backlog" value={filters.backlog} onChange={handleFilterChange} />
 
-        <button onClick={handleSearch}>Apply</button>
+        <button onClick={handleApplyFilter}>Apply</button>
       </div>
       )}
 
       <div className="results-container">
-        {sortedResults.map((profile) => (
-          <div key={profile.id} className="profile-card">
-      <div className='upperprofilecard'>
-      <div className="profile-picture">
-        <img src={Profilepicture} alt="Profile" />
-      </div>
-      <hr />
-      <div className="profile-details">
-        <h2 className="profile-name">{profile.name}</h2>
-        <h4 className="profile-rollNumber">{profile.rollNumber}</h4>
-        <h5 className="profile-GPA">{profile.GPA} GPA</h5>
-        <h5 className="profile-backlog">{profile.backlog} Active Baclogs</h5>
-      </div>
-      </div>
-      <div>
-        <h5 class="profile-degree-batch"> {profile.degree} | {profile.batch} </h5>
-      </div>
+        {searchResults.length > 0 ? searchResults.map((profile) => (
+          <div key={profile.id} className="profile-card" onClick={() => handleClick(profile)}>
+            <div className='upperprofilecard'>
+            <div className="profile-picture">
+              <img src={Profilepicture} alt="Profile" />
+            </div>
+            <hr />
+            <div className="profile-details">
+              <h2 className="profile-name">{profile.name}</h2>
+              <h4 className="profile-rollNumber">{profile.rollNumber}</h4>
+              {/* <h5 className="profile-GPA">{profile.GPA} GPA</h5>
+              <h5 className="profile-backlog">{profile.backlog} Active Baclogs</h5> */}
+            </div>
+            </div>
+            <div>
+              <h5 class="profile-degree-batch"> {profile.degree} | {profile.batch} </h5>
+            </div>
           </div>
-        ))}
+        )) : "No Users Found"}
       </div>
     </div>
         <footer className="AdminFooter">

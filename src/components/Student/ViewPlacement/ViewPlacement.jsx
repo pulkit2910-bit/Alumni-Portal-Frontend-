@@ -29,7 +29,7 @@ const ViewPlacement = ({ user }) => {
                   <p>{joboffer.type}</p>
                   <p>
                     {joboffer.link ? (
-                      <a href={joboffer.link} target="_blank">
+                      <a href={`https://${joboffer.link}`} target="_blank">
                         View Document &#x1F517;
                       </a>
                     ) : (
@@ -58,7 +58,7 @@ const ViewPlacement = ({ user }) => {
                   <p>{formatDate(exp.startDate)} {exp.endDate?(<> - {formatDate(exp.endDate)}</>):(<> - present</>)}</p>              
                   <p>{exp.desc}</p>
                   <p>{exp.link ? (
-                    <a href={(exp.link)} target="_blank">
+                    <a href={`https://${exp.link}`} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }
@@ -83,7 +83,7 @@ const ViewPlacement = ({ user }) => {
                   <p>{exam.result}</p>
                   <p>{exam.desc}</p>
                   <p>{exam.link ? (
-                    <a href={(exam.link)} target="_blank">
+                    <a href={`https://${exam.link}`} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }
@@ -108,7 +108,7 @@ const ViewPlacement = ({ user }) => {
                   <p>{hstudy.degree}</p>
                   <p>{hstudy.desc}</p>
                   <p>{hstudy.link ? (
-                    <a href={(hstudy.link)} target="_blank">
+                    <a href={`https://${hstudy.link}`} target="_blank">
                       View Document &#x1F517;
                     </a>) : (<em>Validating Document N/A</em>)
                   }

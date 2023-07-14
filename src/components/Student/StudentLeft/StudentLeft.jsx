@@ -114,7 +114,7 @@ return (
           <h5>{prores.title}</h5>
           <p>{prores.desc}</p>
           <p>{prores.link?(
-              <a href={(prores.link)} target="_blank">
+              <a href={`https://${prores.link}`} target="_blank">
                    Link &#x1F517;
               </a>):(<em>Validating Link N/A</em>)
               }
@@ -174,7 +174,7 @@ return (
                 <h5>{extcur.title}</h5>
                 <p>{extcur.desc}</p>
                 <p>{extcur.link?(
-                    <a href={(extcur.link)} target="_blank">
+                    <a href={`https://${extcur.link}`} target="_blank">
                         View Document &#x1F517;
                     </a>):(<em>Validating Document N/A</em>)
                     }

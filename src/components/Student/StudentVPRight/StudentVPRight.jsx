@@ -57,7 +57,7 @@ const StudentVPRight = ({ user }) => {
                   <p>{Achievement.desc}</p>
                   <p>
                     {Achievement.link ? (
-                      <a href={Achievement.link} target="_blank">
+                      <a href={`https://${Achievement.link}`} target="_blank">
                         View Document &#x1F517;
                       </a>
                     ) : (

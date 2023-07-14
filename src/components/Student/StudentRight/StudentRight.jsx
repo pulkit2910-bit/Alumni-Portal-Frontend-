@@ -217,7 +217,7 @@ let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
                 <h5>{Achievement.title}</h5>
                 <p>{Achievement.desc}</p>
                 <p>{Achievement.link?(
-                    <a href={(Achievement.link)} target="_blank">
+                    <a href={`https://${Achievement.link}`} target="_blank">
                         View Document &#x1F517;
                     </a>):(<em>Validating Document N/A</em>)
                     }
