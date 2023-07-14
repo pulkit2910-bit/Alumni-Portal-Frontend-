@@ -59,8 +59,8 @@ const ProfileRight = () => {
 
 //for achievements edit button
 
-let [achievements, setAchievements] = useState(user.achievements); //it's an array
-let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
+  let [achievements, setAchievements] = useState(user.achievements); //it's an array
+  let [isEditRight2Mode, setIsEditRight2Mode] = useState(false);
 
   const handleRight2EditClick = () => {
     setIsEditRight2Mode(true);

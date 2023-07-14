@@ -55,7 +55,7 @@ function SearchPage({isAdmin}) {
       res.name?.toLowerCase().includes(searchQuery?.toLowerCase())
     );
     setSearchResults(newRes);
-    console.log(searchResults)
+    // console.log(searchResults)
   };
 
   const handleApplyFilter = () => {
@@ -70,7 +70,7 @@ function SearchPage({isAdmin}) {
     setSearchResults(filteredResults);
   };
 
-  // Alumni
+  // Download User basic details
   const downloadCSV = () => {
     const data = searchResults;
     const filteredData = data.map((
@@ -83,6 +83,107 @@ function SearchPage({isAdmin}) {
     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
     XLSX.writeFile(workbook, "DataSheet.xlsx");
   }
+
+  // Download User education details
+  const downloadEducation = () => {
+    // Excel workbook
+    const workbook = XLSX.utils.book_new();
+    const users = searchResults;
+    // Excel sheet
+    const sheetName = 'Education';
+    const sheetData = [['Name', 'Roll Number', 'Institution', 'Degree', 'Start Date', 'End Date']];
+    
+    users.forEach((user) => {
+      const { name, rollNumber, education } = user;
+      education.forEach((exp) => {
+        const rowData = [name, rollNumber, exp.institution, exp.degree, exp.startDate, exp.endDate];
+        sheetData.push(rowData);
+      });
+    });
+  
+    const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+  
+    // Export the Excel file
+    const excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+  
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(
+      new Blob([s2ab(excelFile)], { type: 'application/octet-stream' })
+    );
+    downloadLink.download = 'user_education.xlsx';
+    downloadLink.click();
+  };
+
+  // Download User experiences details
+  const downloadExperiences = () => {
+    // Excel workbook
+    const workbook = XLSX.utils.book_new();
+    const users = searchResults;
+    // Excel sheet
+    const sheetName = 'Experiences';
+    const sheetData = [['Name', 'Roll Number', 'Company', 'Position', 'Start Date', 'End Date']];
+    
+    users.forEach((user) => {
+      const { name, rollNumber, experience } = user;
+      experience.forEach((exp) => {
+        const rowData = [name, rollNumber, exp.company, exp.position, exp.startDate, exp.endDate];
+        sheetData.push(rowData);
+      });
+    });
+  
+    const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+  
+    // Export the Excel file
+    const excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+  
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(
+      new Blob([s2ab(excelFile)], { type: 'application/octet-stream' })
+    );
+    downloadLink.download = 'user_experiences.xlsx';
+    downloadLink.click();
+  };
+
+  // Download User achievements details
+  const downloadAchievements = () => {
+    // Excel workbook
+    const workbook = XLSX.utils.book_new();
+    const users = searchResults;
+    // Excel sheet
+    const sheetName = 'Achievements';
+    const sheetData = [['Name', 'Roll Number', 'Achievements']];
+    
+    users.forEach((user) => {
+      const { name, rollNumber, achievements } = user;
+      achievements.forEach((achievement) => {
+        const rowData = [name, rollNumber, achievement];
+        sheetData.push(rowData);
+      });
+    });
+  
+    const worksheet = XLSX.utils.aoa_to_sheet(sheetData);
+    XLSX.utils.book_append_sheet(workbook, worksheet, sheetName);
+  
+    // Export the Excel file
+    const excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'binary' });
+  
+    const downloadLink = document.createElement('a');
+    downloadLink.href = URL.createObjectURL(
+      new Blob([s2ab(excelFile)], { type: 'application/octet-stream' })
+    );
+    downloadLink.download = 'user_achievements.xlsx';
+    downloadLink.click();
+  };
+  
+  // Utility function to convert s to arrayBuffer
+  const s2ab = (s) => {
+    const buf = new ArrayBuffer(s.length);
+    const view = new Uint8Array(buf);
+    for (let i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff;
+    return buf;
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -179,6 +280,18 @@ function SearchPage({isAdmin}) {
           {/* insert onclick backend codes here */}
           <button onClick={() => downloadCSV()}>
             Download  &nbsp; <AiOutlineDownload/>
+          </button>
+
+          <button onClick={() => downloadEducation()}>
+            Download Education &nbsp; <AiOutlineDownload/>
+          </button>
+
+          <button onClick={() => downloadAchievements()}>
+            Download Achievements &nbsp; <AiOutlineDownload/>
+          </button>
+
+          <button onClick={() => downloadExperiences()}>
+            Download Experiences &nbsp; <AiOutlineDownload/>
           </button>
 
           <button>
